@@ -1,0 +1,39 @@
+{**
+ * Template for PollieLink - part of Pollie component for Nette Framework.
+ *
+ * @copyright  Copyright (c) 2009 Ondřej Brejla
+ * @license    New BSD License
+ * @link       http://github.com/OndrejBrejla/Pollie
+ *
+ * @param   string                          $question
+ * @param   Answer[]                        $answers
+ * @param   int                             $allVotesCount
+ * @param   boolean                         $isVotable
+ *}
+<div class="anketa">
+{snippet}
+    <h4>{$question}</h4>
+    {foreach $answers as $answer}
+        <p>
+            <span>
+                {if $isVotable}
+                    <a href="{link vote! $answer->id}" class="ajax">{$answer->text}</a>
+                {else}
+                    {$answer->text}
+                {/if}
+            </span>
+            <span>
+                ({$answer->votesCount}x - {$ratio = $allVotesCount ? round($answer->votesCount/($allVotesCount/100), 2) : 0}%)
+                <br />
+                <img src="/images/pixel-darkblue.png" width="{$ratio * 200/100}" height="10" border="0" />
+            </span>
+        </p>
+    {/foreach}
+    <div>Total votes: <strong>{$allVotesCount}</strong></div>
+    <div n:if="$flashes">
+        {foreach $flashes as $flash}
+            {$flash->message}
+        {/foreach}
+    </div>
+{/snippet}
+</div>

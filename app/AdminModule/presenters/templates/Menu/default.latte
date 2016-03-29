@@ -1,0 +1,19 @@
+{block content}
+{control titleArticle admin_links=>$admin_links}
+
+{control titleImage admin_links=>$admin_links}
+  
+<div class="clanok-casti podclanky">
+  {if $obsahuje}
+    {control menu:podclanky $uroven, divClass => main-admin-menu, avatar=>$avatar_path, anotacia => FALSE, article_avatar_view_in=>1}
+  {else}
+    {if $clanok->hlavne_menu->absolutna !== NULL}
+      <h3>
+        Táto časť odkazuje na absolútnu adresu:
+        <a href="{if strpos($clanok->hlavne_menu->absolutna, 'http') === FALSE}{link $clanok->hlavne_menu->absolutna}{else}{$clanok->hlavne_menu->absolutna}{/if}" title="odkaz">{$clanok->hlavne_menu->absolutna}</a>
+      </h3>  
+    {else}
+      <h3>Táto časť ešte neobsahuje žiadnu položku!</h3>
+    {/if}
+  {/if}
+</div>

@@ -1,0 +1,88 @@
+{block spec_js}
+<script>
+  $(function() {
+    var formular = $( "#add-produkt-image" );
+    formular.dialog({
+      autoOpen: false,
+      width: 600,
+      modal: true
+    });
+    $("#add-produkt-image-link")
+      .click(function() {
+        formular.dialog( "open" );
+        return false;
+      });
+  });
+  </script>
+{/block}
+{block content}
+<div class="produkt">
+  <a href="{plink Clanky:default $back_link_id}" title="Návrat" class="button-left back-link"><i class="fa fa-reply fa-2x"></i>Návrat na zoznam</a>
+  <a href="{link confirmForm:confirmDelete! id => $p->id, back_link_id => $back_link_id, zdroj_na_zmazanie => 'produkt', nazov => $p->nazov}" title="Vymazanie produktu" class="button-right vymaz-link"><i class="fa fa-trash-o fa-2x"></i>Vymazanie produktu</a>
+  <a href="{plink Produkt:edit $p->id, $back_link_id, 'Produkt'}" title="Editácia" class="button-right edit-link"><i class="fa fa-pencil fa-2x"></i>Editácia produktu</a>
+  <h2>{$p->nazov}</h2>
+  <div class="produkt-view" n:if="$p">  
+    <script><!--
+      var valittuKuva = 'productimage1';
+      //-->
+    </script>
+    <div class="thumbNails">
+      {foreach $pi as $img}
+        {var $im = $basePath.$produkt_path.'/images/'.$img->subor}
+        {first}{var $prvy_obrazok = $im}{/first}
+        <a href="javascript:" OnClick="getElementById(valittuKuva).style.border='';valittuKuva='productimage{$iterator->counter}';getElementById(valittuKuva).style.border='3px solid #F56506';document.getElementById('paakuvadiv').innerHTML = '<img src={$im}>'">
+          <img id="productimage{$iterator->counter}" src="{$im}" width="114" border="0" alt="" {first} style="border: 3px solid #F56506;"{/first} />
+        </a>
+      {/foreach}
+      <a href="" title="Pridaj obrázok" id="add-produkt-image-link">
+        <img src="{$basePath}/www/images/image_add.png" width="114" border="0" alt="" />
+      </a>
+    </div>
+    <div id="add-produkt-image" class="editForm" title="Pridanie nového obrázku k produktu: {$p->nazov}" style="display:none">{control addImageForm}</div>
+    <table width="80%" border="0" cellpadding="0" cellspacing="0">
+     <tr align="left" valign="top">
+      <td class="productimage" id="paakuvadiv" colspan="2"><img n:ifset="$prvy_obrazok" src="{$prvy_obrazok}" /></td>
+     </tr>
+     <tr class="productspecs">
+       <th colspan="2">
+        <img class="lampoluokkakuva" src="{$basePath}/www/images/icon_{$p->tepkat}_s.jpg" width="56" height="55" border="0" />
+        <h3 class="mainh">Informácie o produkte</h3>
+        <a href="{$basePath.$produkt_path.'/pdf/'.$p->pec_pdf}" title="{$p->pec_pdf}" target="_blank">{$p->pec_pdf}</a>
+       </th>
+     </tr>
+     <tr class="productspecs">
+       <td>
+        <table>
+          <tr><th colspan="2"><h3>Rozmery</h3></th></tr>
+          <tr n:ifset="$p->vyska"><td>Výška:</td><td>{$p->vyska} mm</td></tr>
+          <tr n:ifset="$p->sirka"><td>Šírka:</td><td>{$p->sirka} mm</td></tr>
+          <tr n:ifset="$p->hlbka"><td>Hĺbka:</td><td>{$p->hlbka} mm</td></tr>
+          <tr n:ifset="$p->hmotnost"><td>Hmotnosť:</td><td>{$p->hmotnost} kg</td></tr>
+          <tr n:ifset="$p->bottom_plinth_weight"><td>Hmotnosť spodného podstavca:</td><td>{$p->bottom_plinth_weight} kg</td></tr>
+          <tr n:ifset="$p->copatible_aurum"><td>Kompatibilné s Aurum Pellet Unit:</td><td>{$p->copatible_aurum ? 'Áno' : 'Nie'}</td></tr>
+          <tr><th colspan="2"><h3>Informácie o teple</h3></th></tr>
+          <tr n:ifset="$p->termal_energy"><td>Tepelná energia:</td><td>{$p->termal_energy} kWh</td></tr>
+          <tr n:ifset="$p->nominal_heat_output"><td>Nominálny tepelný výkon:</td><td>{$p->nominal_heat_output|ciarka} kW / {$p->nominal_heat_time|ciarka} h</td></tr>
+          {ifset $p->heat_release_time100}
+            <tr><td colspan="2">Tepelná akumulačná kapacita (h), percent maximálneho výkonu:</td></tr>
+            <tr><td>&nbsp;&nbsp;100%</td><td>{$p->heat_release_time100|ciarka} h</td></tr>
+            <tr><td>&nbsp;&nbsp;50%</td><td>{$p->heat_release_time50|ciarka} h</td></tr>
+            <tr><td>&nbsp;&nbsp;25%</td><td>{$p->heat_release_time25|ciarka} h</td></tr>
+            <tr><td>Účinnosť:</td><td>{$p->efficiency}%</td></tr>
+          {/ifset}       
+          <tr n:ifset="$p->heating_time"><td>Čas spaľovania (h:min):</td><td>{$p->heating_time|date:'%H:%I'}</td></tr>
+          <tr n:ifset="$p->heating_occasion"><td>Max.množstvo dreva / príležitostné vykurovanie:</td><td>{$p->heating_occasion|ciarka} kg</td></tr>
+          <tr n:ifset="$p->forewood_lenght"><td>Dĺžka dreva do rúry na pečenie:</td><td>{$p->forewood_lenght|ciarka} cm</td></tr>
+          <tr n:ifset="$p->firewood_lenght"><td>Dĺžka dreva:</td><td>{$p->firewood_lenght|ciarka} cm</td></tr>
+        </table>
+      </td>
+      <td>
+        <table>
+          <tr><th colspan="2"><h3>Kategórie</h3></th></tr>
+          <tr>{control kategorieEditForm}</tr>
+        </table>
+      </td>
+     </tr>
+    </table>
+  </div>
+</div>

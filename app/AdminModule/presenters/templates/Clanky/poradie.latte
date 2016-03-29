@@ -1,0 +1,6 @@
+{block menu_s}{include 'menu_s.latte'}{/block} {* Vlozenie zoznamu clankov do hl. menu *}
+{block content}
+<h2 n:block="title">{$h2}</h2>
+<div class="stav st_zle">
+	<p n:foreach="$text as $te">{$te}</p>
+</div>

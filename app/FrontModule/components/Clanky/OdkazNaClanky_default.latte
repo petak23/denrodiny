@@ -1,0 +1,17 @@
+<div n:snippet="odkazNaClanky" class="odkaz-na-clanky">
+  <a href="{$odkaz}" title="{$nazov}">
+    <span class="fa fa-arrow-right"> </span> {$nazov}
+  </a>
+  {if $datum_platnosti != NULL}
+    &nbsp;
+    {if $datum_platnosti < strftime("%Y-%m-%d", time())}
+      <strong>{$texty["neplatny"]}</strong> {$texty["platil_do"]}{$datum_platnosti|date:'%d.%m.%Y'}
+    {else}
+      {$texty["platny_do"]}{$datum_platnosti|date:'%d.%m.%Y'}
+    {/if}
+  {/if}
+  <div n:if="isset($avatar) && is_file('www/files/menu/'.$avatar)" class="avatar-img">
+    <img src="{$basePath}/www/files/menu/{$avatar}" alt="Titulný obrázok">
+  </div>
+  <p n:if="isset($anotacia)"><small n:tag-if="FALSE">{$anotacia}</small></p>
+</div>

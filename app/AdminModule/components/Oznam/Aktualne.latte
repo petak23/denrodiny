@@ -1,0 +1,16 @@
+<div n:snippet="OznamyAktualne" class="oznamy">
+  {if count($oznamy)}
+    <article n:foreach="$oznamy as $o">
+      <h3>{$o->nazov}
+        <span class="datum">
+          <span>{$o->datum_zadania|date:'j.n.Y'}</span>
+          <span>Platí do: {$o->datum_platnosti|date:'j.n.Y'}</span>
+        </span>
+      </h3>
+      <p>{$o->text|noescape|koncova_znacka}</p>
+      <div class="meno">{$o->user_profiles->meno} {$o->user_profiles->priezvisko}</div>
+    </article>
+  {else}
+    <span class="stav st_info">Nie je žiadna aktuálna aktualita(oznam)</span>
+  {/if}
+</div>

@@ -1,0 +1,7 @@
+<div class="kategoria to-foto-galery">
+  <p>{$texty['to_foto_galery']}</p>
+	<a href="{plink $odkaz, $id_hlavne_menu}" title="{$nazov}" n:if="isset($avatar) && is_file('www/files/menu/'.$avatar)">
+		<img src="{$basePath}/www/files/menu/{$avatar}" alt="Titulný obrázok">
+	</a>
+	<h2><a href="{plink $odkaz, $id_hlavne_menu}" title="{$nazov}">{$nazov}</a></h2>
+</div>

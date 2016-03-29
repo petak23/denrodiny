@@ -1,0 +1,121 @@
+<div class="page-header edit-link-bar" data-toggle="tooltip" data-placement="bottom">
+  {var $al = $admin_links['alink']}
+  <a n:if="$al['druh_opravnenia']" href="{if $al['druh_opravnenia'] == 1}{plink $al['link']['main'] id=>$clanok->id_hlavne_menu}{else}{plink $al['link']['main'] id=>$clanok->id_hlavne_menu, uroven=>$al['link']['uroven']}{/if}" title="Pridanie podčlánku" class="btn btn-success">
+    <i class="fa fa-file-o"></i>{$admin_links['alink']['text']}
+  </a>
+  <a n:if="$admin_links['elink']" href="{plink $clanok->hlavne_menu->druh->presenter.':edit' $clanok->id_hlavne_menu}" title="Zmeň nastavenie článku" class="btn btn-success"><i class="fa fa-pencil"></i>Zmeň nastavenie</a>
+  <a n:if="$admin_links['elink'] && isset($clanok->id_clanok_lang)" href="{plink Clanky:edit2 $clanok->id_hlavne_menu}" title="Zmeň text článku" class="btn btn-success"><i class="fa fa-file-text"></i>Zmeň text</a>
+  <a n:if="$admin_links['dlink']" href="{plink confirmForm:confirmDelete! id => $clanok->id_hlavne_menu, druh=>'', nazov=>$clanok->nazov, zdroj_na_zmazanie=>'článok'}" title="Vymazanie článku" class="btn btn-danger" href="#" role="button">
+    <i class="fa fa-trash-o"></i>
+  </a>
+  <div n:snippet="zmenVlastnika" class="btn-group edit-link-bar" role="group" aria-label="zmen-vlastnika-link">
+    <div class="btn btn-info disabled" title="Zadal: {$clanok->hlavne_menu->user_profiles->meno} {$clanok->hlavne_menu->user_profiles->priezvisko}" type="button">
+      <i class="fa fa-user"></i> {$clanok->hlavne_menu->user_profiles->meno} {$clanok->hlavne_menu->user_profiles->priezvisko}
+    </div>
+    <button n:if="$admin_links['vlastnik']" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalUserChange" title="Zmeň vlastníka položky"><i class="fa fa-pencil"></i></button>
+  </div>
+  <div class="btn btn-primary disabled" role="button" title="Posledná zmena: {$clanok->hlavne_menu->modified|date:'j.n.Y'}">
+    <i class="fa fa-calendar-check-o"></i> {$clanok->hlavne_menu->modified|date:'j.n.Y'}
+  </div>
+  <div n:snippet="porPodclanoky" n:if="$por_podclanky !== FALSE && $por_podclanky->count() && $al['druh_opravnenia']" class="btn-group edit-link-bar" role="group" aria-label="poradie-podclanky-link">
+    <div class="btn btn-info disabled" title="Poradie podčlánkov podľa dátumu platnosti od {$c = $clanok->hlavne_menu->poradie_podclankov ? 'najneskoršieho' : 'najskoršieho'}.">
+      Poradie podčlánkov <i class="fa fa-sort-numeric-{$c = $clanok->hlavne_menu->poradie_podclankov ? 'desc' : 'asc'}"></i>
+    </div>
+    <a n:if="$admin_links['vlastnik']" n:href="podclankyZoradenie!" title="Zmeň zoradenie podclankov podľa dátumu platnosti od {$clanok->hlavne_menu->poradie_podclankov ? 'najskoršieho' : 'najneskoršieho'}." class="btn btn-info" role="button">
+      Nastav na <i class="fa fa-sort-numeric-{$c = $clanok->hlavne_menu->poradie_podclankov ? 'asc' : 'desc'}"></i>
+    </a>
+  </div>
+  <div n:snippet="uroven" class="btn-group edit-link-bar" role="group" aria-label="uroven-link">
+    <div n:if="$admin_links['vlastnik']" class="btn btn-warning disabled" title="Prístupný od úrovne: {$clanok->hlavne_menu->id_registracia} - {$clanok->hlavne_menu->registracia->nazov}">
+      <i class="fa fa-users"></i>
+      <strong class="uroven-registracie-{$clanok->hlavne_menu->id_registracia}">{$clanok->hlavne_menu->registracia->nazov}</strong>
+    </div>
+    <button n:if="$admin_links['vlastnik']" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalRegistraciaChange" title="Zmeň úroveň prístupu"><i class="fa fa-pencil"></i></button>
+  </div>
+  <div n:if="$clanok->hlavne_menu->nazov_ul_sub !== NULL" n:snippet="vzhlad" class="btn-group edit-link-bar" role="group" aria-label="vzhlad-link">
+    <div class="btn btn-success disabled" role="button" title="Vzhľad pre Front modul vzhľad: {$c = isset($clanok->hlavne_menu->nazov_ul_sub) ? $clanok->hlavne_menu->nazov_ul_sub : 'východzí'}">
+      Vzhľad pre Front modul vzhľad: <strong>{$c = isset($clanok->hlavne_menu->nazov_ul_sub) ? $clanok->hlavne_menu->nazov_ul_sub : 'východzí'}</strong></div>
+    <a n:if="FALSE && $admin_links['vlastnik'] && $clanok->hlavne_menu->nazov_ul_sub !== NULL && $user->isAllowed('Admin:Clanky', 'vzhlad')" href="{plink Clanky:vzhlad $clanok->id_hlavne_menu}" class="btn btn-info" role="button" title="Zmeň vzhľad"><i class="fa fa-pencil"></i></a>
+  </div>
+  <div n:snippet="platnost" class="btn-group edit-link-bar" role="group" aria-label="platnost-link">
+    {var $cl='primary'}
+    {ifset $clanok->hlavne_menu->datum_platnosti}
+      {if $clanok->hlavne_menu->datum_platnosti < strftime("%Y-%m-%d", time())}{var $datum = 'Článok už nie je platný! Platil do:'}{var $cl='warning'}
+      {else}{var $datum = 'Článok platí do:'}{/if}
+    {/ifset}
+    <div class="btn btn-{$cl} disabled" title="{ifset $clanok->hlavne_menu->datum_platnosti}{$datum} {$clanok->hlavne_menu->datum_platnosti|date:'%d.%m.%Y'}{else}Dátum platnosti sa nesleduje.{/ifset}">
+      <i class="fa fa-calendar"></i>
+      {ifset $clanok->hlavne_menu->datum_platnosti}
+        {if $clanok->hlavne_menu->datum_platnosti < strftime("%Y-%m-%d", time())}Platil {else}Platí {/if}
+        do:<strong> {$clanok->hlavne_menu->datum_platnosti|date:'%d.%m.%Y'}</strong>
+      {/ifset}
+    </div>
+    <button n:if="$admin_links['vlastnik']" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalDatumPlatnostiChange" title="Zmeň platnosť položky"><i class="fa fa-pencil"></i></button>
+  </div>
+  <div n:if="$komentare_enabled" n:snippet="komentare" class="btn-group edit-link-bar" role="group" aria-label="komentare-enabled-link">
+    {var $kom_enab = $clanok->hlavne_menu->komentar}
+    {var $kom_text = $kom_enab ? 'Zakázať' : 'Povoliť'}
+    <div class="btn btn-{if $kom_enab}warning{else}info{/if} disabled" title="Komentáre k článku sú {if $kom_enab}dovolené{else}zakázané{/if}."><i class="fa fa-commenting"></i>{*Komentáre k článku sú {if $kom_enab}dovolené{else}zakázané{/if}.*}</div>
+    <a n:if="$vlastnik" n:href="komentare! volba => (1-$kom_enab)" title="{$kom_text}" class="btn btn-info"><i class="fa fa-{if $kom_enab}close{else}check{/if}"></i>{*$kom_text*}</a>
+  </div>
+  <div n:snippet="aktualnyProjekt" n:if="$aktualny_projekt_enabled" class="btn-group edit-link-bar" role="group" aria-label="aktualny-projekt-link">
+    {var $ap = $clanok->hlavne_menu->aktualny_projekt}
+    <div class="btn btn-{if $ap}warning{else}primary{/if} disabled" title="Položka {if !$ap}nie {/if}je aktuálny projekt!"><i class="fa fa-archive"></i>{if $ap}Aktuálny projekt!{/if}</div> 
+    <a n:if="$admin_links['vlastnik']" n:href="aktualnyProjekt! volba => (1-$clanok->hlavne_menu->aktualny_projekt)" title="{if $ap}Zruš{else}Nastav{/if} aktuálny projekt" class="btn btn-info" role="button">
+      <i class="fa fa-{if $pc}close{else}check{/if}"></i>
+    </a>
+  </div>
+  <div n:snippet="priamyClanok" n:if="isset($nadradeny) && $user->isAllowed('Admin:Clanky', 'priamy')" class="btn-group edit-link-bar" role="group" aria-label="priamy-clanok-link">
+    {var $pc = isset($nadradeny->redirect_id) && $clanok->id_hlavne_menu == $nadradeny->redirect_id}
+    <div class="btn btn-{if $pc}warning{else}primary{/if} disabled" title="Položka {if $pc}je{else}nie je{/if} priamy článok!"><i class="fa fa-arrow-circle-down"></i>{if $pc} Priamy článok!{/if} </div>
+    <a n:if="$admin_links['vlastnik']" n:href="priamyClanok!" title="{if $pc}Zruš{else}Nastav{/if} ako priamy článok" class="btn btn-info" role="button">
+      <i class="fa fa-{if $pc}close{else}check{/if}"></i>
+    </a>
+  </div>
+</div>
+
+{* -- Modal dialog pre zmenu vlastníka -- *}
+<div class="modal fade" id="myModalUserChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Zmena vlastníka položky: {$clanok->nazov}</h4>
+        <p>Aktuálny vlastník: {$clanok->hlavne_menu->user_profiles->meno} {$clanok->hlavne_menu->user_profiles->priezvisko}</p>
+      </div>
+      <div class="modal-body">
+        {control zmenVlastnikaForm}
+      </div>
+    </div>
+  </div>
+</div>
+{* -- Modal dialog pre zmenu urovne -- *}
+<div class="modal fade" id="myModalRegistraciaChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Zmena úrovne prístupu k položke: {$clanok->nazov}</h4>
+        <p>Aktuálna úroveň: {$clanok->hlavne_menu->registracia->id} - {$clanok->hlavne_menu->registracia->nazov}</p>
+      </div>
+      <div class="modal-body">
+        {control zmenUrovenRegistracieForm}
+      </div>
+    </div>
+  </div>
+</div>
+{* -- Modal dialog pre zmenu datumu platnosti -- *}
+<div class="modal fade" id="myModalDatumPlatnostiChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Zmena platnosti položky: {$clanok->nazov}</h4>
+        <p>Aktuálna platnosť: {ifset $clanok->hlavne_menu->datum_platnosti}{$clanok->hlavne_menu->datum_platnosti|date:'%d.%m.%Y'}{else}Nesleduje sa.{/ifset}</p>
+      </div>
+      <div class="modal-body">
+        {control zmenDatumPlatnostiForm}
+      </div>
+    </div>
+  </div>
+</div>

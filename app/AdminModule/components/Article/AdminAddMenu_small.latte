@@ -1,0 +1,10 @@
+{snippet addpolmenu}
+<ul n:inner-foreach="$out['ponuka'] as $po" class="dropdown-menu">
+  <li>
+    <a href="{plink $po['link'], id=>$po['id'], uroven=>$po['uroven']}" title="Pridanie novej položky">
+      <strong>{$po['presenter']}</strong>
+    </a>
+    - <small>{$po['popis']}</small>
+  </li>
+</ul>
+{/snippet}

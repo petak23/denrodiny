@@ -1,0 +1,55 @@
+{block content}
+{var $allow_ucast = $user->isAllowed('Admin:Oznam', 'ucast') && $udaje['oznam_ucast']}
+<div n:foreach="$ponuka as $p">
+  <a n:href="$p['odkaz']"  title="{$p['text']}" class="button-right {$p['button_type']}"><i class="fa {$p['class']} fa-2x"></i>{$p['text']}</a>
+</div>
+<h2>Oznamy:</h2>
+{if count($oznamy)}
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" n:inner-foreach="$oznamy as $ozn">
+  <div class="panel {if $ozn['aktualny']} panel-success{else}panel-default{/if}">
+    {var $oznam = $ozn['oznam']}
+    {var $vlastnik = $control->siVlastnik('edit', $oznam->id_user_profiles)}
+    <div class="panel-heading" role="tab" id="heading{$iterator->counter}">
+      <h4 class="panel-title">
+        <span class="text-right oznam-head">
+          {if $ozn['aktualny']}
+            Platí do: <strong>{$oznam->datum_platnosti|date:'j.n.Y'}</strong>
+          {else}
+            Platil do: {$oznam->datum_platnosti|date:'j.n.Y'}
+          {/if}
+        </span>
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{$iterator->counter}" aria-expanded="{if $ozn['aktualny']}true{else}false{/if}" aria-controls="collapse{$iterator->counter}" {if $ozn['aktualny']}class="collapsed"{/if}>
+          <s n:tag-if="!$ozn['aktualny']">{$oznam->nazov}</s>
+        </a>
+      </h4>
+    </div>
+      <div id="collapse{$iterator->counter}" class="panel-collapse collapse {if $ozn['aktualny']}in{/if}" role="tabpanel" aria-labelledby="heading{$iterator->counter}">
+      <div class="panel-body">
+        <div class="admin-block">
+          <a n:if="$vlastnik" href="{link confirmForm:confirmDelete! id => $oznam->id, nazov => $oznam->nazov, zdroj_na_zmazanie => 'oznam'}" title="Vymazanie {$oznam->nazov}" class="button-right vymaz-link">
+            <i class="fa fa-trash-o fa-2x"></i>Vymazanie oznamu
+          </a>
+          <a n:if="$vlastnik" n:href="Oznam:edit $oznam->id" title="Editácia {$oznam->nazov}" class="button-right edit-link"><i class="fa fa-pencil fa-2x"></i>Editácia oznamu</a>
+        </div>
+        <p>
+          <img n:if="isset($oznam->ikonka->nazov) && !$oznam_title_image_en" src="{$basePath}/www/ikonky/128/{$oznam->ikonka->nazov}128.png" alt="Ikonka" class="oznam-ikonka">
+          <a href="#" class="btn btn-primary btn-sm disabled button-right" role="button">Posledná zmena: {$oznam->datum_zadania|date:'j.n.Y'}</a>
+          <a href="#" class="btn btn-primary btn-sm disabled button-right" role="button">Platí do: <strong>{$oznam->datum_platnosti|date:'j.n.Y'}</strong></a>
+          {!$oznam->text}
+          <span class="meno">{$oznam->user_profiles->meno} {$oznam->user_profiles->priezvisko}</span>
+          <div class="row">
+            <div n:if="$allow_ucast && $oznam->potvrdenie" class="col-xs-12 col-md-6">
+              {control potvrdUcast-$oznam->id}
+            </div>
+            <div n:if="$oznam_komentare" class="col-xs-12 col-md-6">
+              {control komentar-$oznam->id}
+            </div>
+          </div>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{else}
+<div class="stav st_info">V súčasnosti nie je žiaden aktuálny oznam!</div>
+{/if}

@@ -1,0 +1,101 @@
+{**
+ * Hlavné rozloženie stránky pre FRONT modul aplikácie
+ * My Application layout template for FRONT module.
+ *
+ *	Modul: FRONT
+ *
+ * Posledna zmena(last change): 15.03.2016
+ * @copyright  Copyright (c) 2012 - 2016 Ing. Peter VOJTECH ml.
+ * @license
+ * @link       http://petak23.echo-msz.eu
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+ *}
+<!DOCTYPE html>
+<html>
+<head>	{* ----- Hlavicka stranky ----- *}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="HandheldFriendly" content="true" />
+  <meta name="robots" content="{ifset $robots}{$robots}{else}index, follow{/ifset}" />
+  <meta name="description" content="{$udaje['description']}" />
+  <meta name="keywords" content="{$udaje['keywords']}" />
+  <meta name="author" content="{$udaje['autor']}" />
+  <title>{$udaje['titulka']} {block title|striptags|upper}{/block}</title>
+  {control files:css}
+  
+  {* ----- Favicon ------ *}
+  <link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+  {block head}{/block}
+</head>
+
+<body>
+	<script> document.body.className+=' js' </script>
+  <div class="container">
+    {*ifset #intro}
+      {include #intro}
+    {else*}
+    <header id="header" >{* ----- ZACIATOK header ------ *}
+    <!--[if lt IE 9]><div id="header"><![endif]-->
+      <div id="hornalista">
+        <h1><a n:href="Homepage">{$udaje['titulka']}</a>
+          <br />{ifset $udaje['nazov']}{$udaje['nazov']|striptags}{/ifset}
+          <small n:ifset="$udaje['h1part2']">{$udaje['h1part2']|striptags}</small>
+        </h1>
+        {*<div><a n:href="Homepage:" title="{$udaje['titulka']}">
+          <img src="{$basePath}/www/images/logo_p.png" class="logo" alt="logo">
+          <img src="{$basePath}/www/images/obluklogo.png" class="logo" alt="logo">
+        </a></div>*}
+        <nav id="nav2">
+        <!--[if lt IE 9]><div id="nav2"><![endif]-->
+          {control menu templateType=>'fixed', cast=>2, article_avatar_view_in =>0}
+        <!--[if lt IE 9]></div><![endif]-->
+        </nav>
+      </div>{* ----- KONIEC horna lista ------ *}
+      <div id="header2">
+        <nav id="nav1">
+        <!--[if lt IE 9]><div id="nav1"><![endif]-->
+          {control menu templateType=>'fixed', cast=>1, article_avatar_view_in =>0}
+        <!--[if lt IE 9]></div><![endif]-->
+        </nav>
+        {control slider}
+        <blockquote n:if="isset($udaje['titulka_citat_enable']) && $udaje['titulka_citat_enable']">
+          <p>{$udaje['titulka_citat']}</p>
+          <footer><cite title="Source Title">{$udaje['titulka_citat_podpis']}</cite></footer>
+        </blockquote>
+      </div>
+    <!--[if lt IE 9]></div><![endif]-->
+    </header>{* ----- KONIEC header ------ *}
+
+    {* ----- ZACIATOK content - centralna cast ----- *}
+    <section id="content" {*class="container"*}>
+    <!--[if lt IE 9]><div id="content"><![endif]-->
+        <div class="row top-panel">
+          {control menu templateType=>'nav', level=>1}
+          {*control userLangMenu*}
+          {include 'flash_messages.latte'}
+        </div>
+        {include #content}
+    <!--[if lt IE 9]></div><![endif]-->
+    </section>
+    {* ----- Spodok stranky - FOOTER ----- *}
+    {include 'footer_template.latte'}
+    {*/ifset*}
+  </div>
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+  {control files:js}
+  {block spec_js}{/block}
+  <script>
+    ga=function(){ ga.q.push(arguments) };ga.q=[];ga.l=+new Date;
+    ga('create','UA-52835371-1','auto');ga('send','pageview');
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>

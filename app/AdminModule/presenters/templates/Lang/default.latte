@@ -1,0 +1,44 @@
+{* Sablona pre vypis jazykov
+ *
+ * Modul: ADMIN
+ *
+ * Posledna zmena(last change): 25.11.2015
+ * @copyright  Copyright (c) 2012 - 2015 Ing. Peter VOJTECH ml.
+ * @license
+ * @link       http://petak23.echo-msz.eu
+ *
+ * @param array  $kontrola Kontrolne pole akceptacie
+ * @param Nette\Database\Table\Selection  $jazyky  jazyky z DB
+*}
+{block content}
+
+<h2 n:block="title, nadpis_h1">Jazyky:</h2>
+<div class="col-xs-12 col-md-12">
+  <a n:if="$user->isAllowed($control->name, 'add')" n:href="Lang:add"  title="Pridanie nového jazyka" class="button-right edit-link">
+    <i class="fa fa-user-plus fa-2x"></i>Pridanie nového jazyka</a>
+</div>
+<div class="col-xs-12 col-md-12 table-responsive">
+  <table class="table table-bordered table-striped table-hover table-clenovia">
+    <tr><th>Skratka</th><th>Miestny názov</th><th>Anglický názov</th><th>Prijatý</th>{*<th> </th>*}</tr>
+    <tr n:foreach="$jazyky as $riadok">
+      <td>{$riadok->skratka}</td>
+      <td><a n:href="Lang:edit $riadok->id" title="{$riadok->nazov}">{$riadok->nazov}</a></td>
+      <td>{$riadok->nazov_en}</td>
+      <td>{if $kontrola[$riadok->skratka]['final'] && $riadok->prijaty != 1}
+            <a n:href="akceptuj! id => $riadok->id" title="Akceptuj">Akceptuj!</a>
+          {elseif $kontrola[$riadok->skratka]['final'] && $riadok->prijaty == 1}
+            <strong class="st_zeleno">Akceptovaný!</strong>
+          {else}
+            <strong>Nedá sa akceptovať lebo:</strong><br />
+            <ul n:inner-foreach="$kontrola[$riadok->skratka]['komentar'] as $key => $val">
+              <li>{!$val}</li>
+            </ul>
+          {/if}
+      </td>
+      {*<td class="editacne center">
+        <a href="{link confirmForm:confirmDelete! id => $riadok->id, nazov => $riadok->nazov, zdroj_na_zmazanie => 'jazyk'}"
+             n:if="$user->isInRole('admin')" title="Vymazanie {$riadok->nazov}" class="vymaz">V</a>
+      </td>*} {* TODO *}
+    </tr>
+  </table>
+</div>

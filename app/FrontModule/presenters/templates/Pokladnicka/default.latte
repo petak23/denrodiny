@@ -1,0 +1,32 @@
+{block content}
+<article class="article-main row">
+<!--[if lt IE 9]><div class="article-main row"><![endif]-->
+  <div class="col-xs-8 col-md-8 col-md-offset-2">
+    <h2 n:inner-block="title">{$h2}</h2>
+    <table class="table table-striped table-condensed table-hover">
+      <tr><th>{$suma}</th><th>{$ucel}</th><th>{$datum}</th></tr>
+    <?php $rok = 0; $rok_d = 0; $celkom = 0; ?>
+    {foreach $pokladnicka as $polozka}
+      <?php $rok_n = StrFTime("%Y", StrToTime($polozka->created)); ?>
+      {if !$iterator->first && $rok_d != $rok_n}
+      <tr class="warning"><th colspan="2">{$suma_za_rok} {$rok_d}</th><th>{$rok|number:2:',':' '}</th></tr>
+      <?php $rok = 0; ?>
+      {/if}
+      <?php $rok_d = $rok_n;
+        $hodnota = $polozka->suma*$polozka->vklad;
+        $rok = $rok + $hodnota;
+        $celkom = $celkom + $hodnota?>
+      <tr>
+        <td>{$polozka->created|date:'j.n.Y'}</td>
+        <td>{$polozka->ucel}</td>   
+        <td n:class="$hodnota >= 0 ? success : danger">{$hodnota|number:2:',':' '}</td>
+      </tr>
+      {if $iterator->last}
+        <tr class="warning"><th colspan="2">{$suma_za_rok} {$rok_d}</th><th>{$rok|number:2:',':' '}</th></tr>
+        <tr class="info"><th colspan="2">{$aktualny_stav}</th><th>{$celkom|number:2:',':' '}</th></tr>
+      {/if}
+    {/foreach}
+    </table>
+  </div>
+<!--[if lt IE 9]></div><![endif]-->
+</article>

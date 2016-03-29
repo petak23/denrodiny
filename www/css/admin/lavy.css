@@ -1,0 +1,53 @@
+/* AUTOR: Peter VOJTECH ml.; CREATION DATE: 23.8.2010; UPDATED 16.10.2015 */
+#lavy h4 {
+  text-align: center;
+}
+.last-login {
+  background-color: #b0d9ff;
+  margin-top: 1ex;
+  padding: .2ex;
+}
+.last-login table {
+  font-size: 70%;
+  border: 1px solid rgba(112, 128, 144, 0.4);
+  margin: 0;
+  width: 100%;
+}
+.last-login tr.r1 { background-color: #ffffff; }
+.last-login tr.r2 { background-color: #e7e7e7; }
+.last-login tr:hover {
+  background-color: #0070a3;
+  color: #ffffff;
+}
+
+.last-login td {
+  height: 1.75em;
+  padding-left: .5ex;
+}
+.last-login table .zvyrazni {
+  font-weight: bold;
+}
+.menu_new ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 1ex;
+}
+.menu_new ul li {
+  display: inline-block;
+  width: 100%;
+}
+.menu_new ul li span > a {
+  float: left;
+}
+.menu_new ul li a{
+  margin-left: .2ex;
+  float:left;
+}
+.menu_new ul li a small {
+  margin-left: .2em;
+}
+.menu_new a.selected {
+  color: #ded;
+  background-color: #00c3f6;
+  font-style: italic;
+}

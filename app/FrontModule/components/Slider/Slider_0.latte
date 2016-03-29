@@ -1,0 +1,21 @@
+{* Sablona pre slider s nahodnym obrazkom
+ *
+ * Modul: FRONT
+ *
+ * Posledna zmena(last change): 16.03.2016
+ * @copyright  Copyright (c) 2012 - 2015 Ing. Peter VOJTECH ml.
+ * @license
+ * @link       http://petak23.echo-msz.eu
+ *
+ * @param array    $p_name   nazov modulu[0] a presentera[1]
+ * @param array    $slider   info. o obrazku slider-a
+*}
+<div class="slider-panel{if $p_name[1]!='Homepage'} slider-pod{/if}" n:snippet="slider">
+  <div>  
+    <img src="{$basePath}/www/files/slider/{$slider->subor}" alt="slider" />
+    <div id="slider-popis">
+      <h2>{$slider->nadpis}</h2>
+      <p>{$slider->popis}</p>
+    </div>
+  </div>
+</div>

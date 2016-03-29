@@ -1,0 +1,23 @@
+{* Sablona pre zobrazenie aktualnych projektov
+ *
+ * Modul: FRONT
+ *
+ * Posledna zmena(last change): 15.03.2016
+ * @copyright  Copyright (c) 2012 - 2016 Ing. Peter VOJTECH ml.
+ * @license
+ * @link http://petak23.echo-msz.eu
+ * @version 1.0.1b
+ *
+ * @param array    $adresa      adresa z DB
+*}
+<h3 class="hidden-sm-xs page-section text-left margin-top-10" id="kontakt-{$adresa->id}">
+  {$adresa->nazov}
+</h3>
+<p class="hidden-sm-xs lead margin-top-10 text-left kontakt">
+  <span n:if="strlen($adresa->meno)>0"><i class="fa fa-user"></i><span>{$adresa->meno}</span></span><br n:if="strlen($adresa->meno)>0">
+  <span n:if="strlen($adresa->adresa)>0"><i class="fa fa-home"></i><span>{$adresa->adresa|noescape}</span></span><br n:if="strlen($adresa->adresa)>0">
+  <span n:if="strlen($adresa->telefon)>0"><i class="fa fa-phone"></i><span>{$adresa->telefon}</span></span><br n:if="strlen($adresa->telefon)>0">
+  <span n:if="strlen($adresa->mobil)>0"><i class="fa fa-mobile"></i><span>{$adresa->mobil}</span></span><br n:if="strlen($adresa->mobil)>0">
+  <span n:if="strlen($adresa->email)>0"><i class="fa fa-envelope"></i><span>{$adresa->email}</span></span><br n:if="strlen($adresa->email)>0">
+  <span n:if="strlen($adresa->poznamka)>0"><span>{$adresa->poznamka}</span></span>
+</p>

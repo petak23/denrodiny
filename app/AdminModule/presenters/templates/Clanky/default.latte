@@ -1,0 +1,52 @@
+{block content}
+{control titleArticle admin_links=>$admin_links}
+
+{control titleImage admin_links=>$admin_links}
+
+{control zobrazClanok}
+
+{snippet prilohy}{control prilohyClanok}{/snippet}
+
+<div class="row komponenty" n:if="$user->isAllowed('Admin:Clanky', 'komponenty')">
+  <div class="col-xs-12 col-md-12">
+  <h3>Pridanie komponenty</h3>
+  <ul n:inner-foreach="$zoznam_komponent as $zkk=>$zkv">
+    <li n:if="$zkv['parametre'] == NULL">
+      <a href="{link addKomponenta! komponenta_spec_nazov=>$zkk, id_hlavne_menu => $clanok->id_hlavne_menu}" title="Pridaj komponentu: {$zkv['nazov']}" class="btn btn-lg btn-success">
+        <i class="fa fa-{$zkv['fa_ikonka']} fa-2x fa-border pull-left"></i>{$zkv['nazov']}
+      </a>
+    </li>
+    <li n:if="$zkv['parametre'] !== NULL" class="s-parametrami">
+      <h4>{$zkv['nazov']}</h4>
+      <form n:name="komponentaAddForm" class="form">
+        <input type="hidden" name="spec_nazov" value="{$zkk}"><input type="hidden" name="id_hlavne_menu_clanku" value="{$clanok->id_hlavne_menu}">
+        <div>Parametre:<br>
+          <dl>
+          {foreach $zkv['parametre'] as $k=>$p}
+            <dt><label name="{$k}">{$p['nazov']}: </label></dt>
+            <dd>{ifset $p['hodnoty']}
+              <select name="{$k}" n:inner-foreach="$p['hodnoty'] as $hk =>$hv">
+                <option value="{$hk}">{$hv}</option>
+              </select>
+            {else}
+              <input type="text" name="{$k}">
+            {/ifset}
+            </dd>
+            {sep}<br>{/sep}
+          {/foreach}
+          </dl>
+        </div>
+        {input uloz}
+      </form>
+    </li>
+  </ul>
+  </div>
+</div>
+<div n:foreach="$komponenty as $komp" class="vypis_komponent">     
+  {ifset $komp["parametre"]}
+    {var $nazov_komp = $komp['nazov'].'-'.$iterator->counter}
+    {control $nazov_komp, $komp["parametre"]}
+  {else}
+    {control $komp["nazov"]}
+  {/ifset}
+</div>

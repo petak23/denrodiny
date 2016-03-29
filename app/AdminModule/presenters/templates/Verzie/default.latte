@@ -1,0 +1,33 @@
+{block content}
+
+<div class="page-header">
+  <a n:href="Verzie:add" n:if="$user->isAllowed($control->name, 'add')" title="Pridanie verzie" class="button-right edit-link">
+		<i class="fa fa-building-o fa-2x"></i>Pridaj novú verziu
+	</a>
+  <h2 n:block="title, nadpis_h1">Verzie:</h2>
+</div>
+  
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default" n:foreach=" $verzie as $verzia">
+    <div class="panel-heading" role="tab" id="heading{$iterator->counter}">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{$iterator->counter}" aria-expanded="{if $iterator->first}true{else}false{/if}" aria-controls="collapse{$iterator->counter}" {first}class="collapsed"{/first}>
+          <strong>{$verzia->cislo}</strong>
+          <span class="ver-datum">{$verzia->datum|date:'j.n.Y'}</span>
+          <span><small>{$verzia->subory}</small></span>
+        </a>
+      </h4>
+    </div>
+      <div id="collapse{$iterator->counter}" class="panel-collapse collapse {first}in{/first}" role="tabpanel" aria-labelledby="heading{$iterator->counter}">
+      <div class="panel-body">
+        <div class="admin-block">
+          <a n:href="Verzie:edit $verzia->id" n:if="$user->isAllowed($control->name, 'edit')"	title="Editácia {$verzia->cislo}" class="button-right edit-link">
+            <i class="fa fa-building fa-2x"></i>Editacia</a>
+          <a href="{link confirmForm:confirmDelete! id => $verzia->id, zdroj_na_zmazanie => 'verziu', nazov => $verzia->cislo}" n:if="$user->isAllowed($control->name, 'del')" title="Vymazanie {$verzia->cislo}" class="button-right vymaz-link">
+            <i class="fa fa-trash-o fa-2x"></i>Vymaž</a>
+        </div>
+        <p class="text-verzie">{!$verzia->text}</p>
+      </div>
+    </div>
+  </div>
+</div>

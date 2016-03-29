@@ -1,0 +1,28 @@
+<footer id="footer">
+<!--[if lt IE 9]><div id="footer"><![endif]-->
+  {* --- Mapa stranky --- *}
+  {control menu templateType=>'mapa'}
+  {* --- Info o stranke --- *}
+  <p>
+    <span>Admin: {$user_admin->meno} {$user_admin->priezvisko|upper} ({$user_admin->users->email|uprav_email})</span>
+    <span n:if="$user_spravca !== FALSE">
+      {$udaje['spravca']}: {$user_spravca->meno} {$user_spravca->priezvisko|upper}
+      ({$user_spravca->users->email|uprav_email})
+    </span>
+    <span>&copy; {$udaje['copy']} 2012 - {date('Y')}</span>
+    <span>{$udaje['last_update']} {$verzia->datum|date:'j.n.Y'}</span>
+		<br>
+    <a href="http://nette.org/cs/" class="logo-nette" title="Nette Framework - populárny nástroj pre vytváranie webových aplikácií v PHP.">
+      <img src="{$basePath}/www/images/nette-powered1.gif" alt="nette powered">
+    </a>
+		<br>
+		<span class="vstup-admin" n:if="$view_log_in_link_in_header < 0 && !$user->isLoggedIn()">
+			{var $txt_vstup = 'Prihlásenie pre administráciu webu'}
+			<a n:href="User:default#prihlas" title="{$txt_vstup}">{$txt_vstup}</a>
+		</span>
+  </p>
+  <div class="row" style="text-align: center;">
+    {control userLangMenu}
+  </div>
+<!--[if lt IE 9]></div><![endif]-->
+</footer>

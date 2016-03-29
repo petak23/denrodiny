@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>
+      Prílohy 
+      <button n:if="$admin_links['elink']" type="button" class="btn btn-success button-right" data-toggle="modal" data-target="#myModalAddPrilohaChange" title="Pridaj prílohu k položke: {$clanok->nazov}">
+        <i class="fa fa-file-o"></i> Pridaj
+      </button>
+    </h3>
+  </div>
+  <table class="table table-bordered table-striped table-hover" n:if="count($dokumenty)">
+    <tr><th></th><th>Značka</th><th>Názov</th><th>Popis</th><th></th></tr>
+    <tr n:foreach="$dokumenty as $d">
+      <td class="sirka8"><img src="{$basePath}/{$d->thumb}" title="{$d->nazov}" class="priloha-thumb"></td>  
+      <td class="sirka8">{$d->znacka}</td>
+      <td class="sirka30">
+        {var $pr = strtolower($d->pripona)}
+        {if $pr == 'jpg' OR $pr == 'png' OR $pr == 'gif' OR $pr == 'bmp'}
+          <a href="{$basePath}/{$d->subor}" class="fotky" rel="fotky" title="{$d->nazov}">{$d->nazov}</a>
+        {else}
+          <a href="{plink Dokumenty: $d->id}" title="{$d->nazov}" target="_blank">{$d->nazov}</a>
+        {/if}
+      </td>
+      <td class="sirka40">{$d->popis}</td>
+      <td>
+        <div class="btn-group" role="group" aria-label="adminLinks" n:if="$admin_links['elink']" >
+          <a href="{link editPriloha! $d->id}" class="btn btn-success btn-sm" title="Editovať"><i class="fa fa-pencil fa-1_5x"></i></a>
+          <a n:if="$user->isAllowed('Admin:Clanky', 'prilohy')" href="{plink confirmForm:confirmDelete! id=>$d->id, druh=>'priloha', nazov=>$d->nazov, zdroj_na_zmazanie=>'prílohu'}" class="btn btn-danger btn-sm" title="Zmazať">
+            <i class="fa fa-trash-o fa-1_5x"></i></a>
+          <a n:if="$pr == 'jpg' OR $pr == 'png' OR $pr == 'gif' OR $pr == 'bmp'" n:href="showInText! $d->id" class="btn {if $d->zobraz_v_texte}btn-success{else}btn-warning{/if} btn-sm{* ajax*}" title="Nezobraz"><i class="fa fa-adjust fa-1_5x"></i></a>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>  
+
+{* -- Modal dialog pre editaciu titulneho obrazku -- *}
+<div class="modal fade" id="myModalAddPrilohaChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" n:if="$admin_links['elink']">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Pridanie prílohy k položke: {$clanok->nazov}</h4>
+      </div>
+      <div class="modal-body">
+        {control editPrilohyForm}
+      </div>
+    </div>
+  </div>
+</div>

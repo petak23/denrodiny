@@ -1,0 +1,15 @@
+{var $robots = noindex}
+
+{block content}
+  <h2 n:block=title>{$h2}</h2>
+  {control verzieEditForm}
+{/block}  
+{block spec_js}
+  <script type="text/javascript">
+    CKEDITOR.replace( 'frm-verzieEditForm-text', {
+      extraPlugins : 'zalomenie',
+      customConfig : '../../js/config_ckeditor.js',
+      toolbar : 'Todo'
+ 		});
+	</script>
+{/block}

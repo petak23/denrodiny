@@ -1,0 +1,37 @@
+{* Template pre komponentu pre potvrdenie ucasti
+ * Posledna zmena(last change): 29.10.2014
+ *
+ * @author Ing. Peter VOJTECH ml <petak23@gmail.com>
+ * @copyright Copyright (c) 2012 - 2014 Ing. Peter VOJTECH ml.
+ * @license
+ * @link http://petak23.echo-msz.eu
+ * @version 1.0.1
+ *
+ * @param array   $volby      volby pre potvrdenie ucasti
+ * @param int     $ucast      moja aktualne potvrdena ucast
+ * @param array   $ucastnici  zoznam ucastnikov, ktory uz potvrdili ucast
+ * @param array   $texty_pu   pole textov pre ine jazyky
+*}
+<div class="potvrdenieUcasti" n:snippet="potvrdenieUcasti">
+  <div>
+    <h4>{$texty_pu['h4']}</h4>
+    {foreach $volby as $k=>$v}
+      {if $k == $ucast}
+        <span class="moja-ucast">{$v|trim}</span>
+      {else}
+        <a href="{link potvrd! id_volba => $k}" title="{$v}" class="ajax">{$v|trim}</a>
+      {/if}
+      {sep} | {/sep}
+    {/foreach}
+    <fieldset class="uzPotvrdene">
+      <legend>{$texty_pu['ucast_uz_potvrdili']}</legend>
+      {if count($ucastnici)}
+        <div n:inner-foreach="$ucastnici as $u">
+          <span class="volba-{$u->id_oznam_volba}">{$u->user_profiles->priezvisko}({$u->volba->volba}){sep}, {/sep}</span>
+        </div>
+      {else}
+        <span>{$texty_pu['este_nikto']}</span>
+      {/if}
+    </fieldset>
+  </div>
+</div>

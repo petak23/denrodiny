@@ -1,0 +1,27 @@
+{var $robots = noindex}
+{block content}
+<h2 n:block=title>{$h2}</h2>
+{control clankyEditForm}
+{/block}
+{block spec_js}
+<script>
+  $('.jquery_ckeditor').ckeditor( function() { /* callback code */ }, {
+      extraPlugins : 'zalomenie',
+      customConfig : '../../js/config_ckeditor.js',
+      toolbar : '<?php echo $CKtoolbar ?>',
+      filebrowserBrowseUrl: '<?php echo $basePath.'/www/editors/filemanager/index.php?bezp_kod='.$bezp_kod ?>'
+    } );
+   /*var clanok = $('#frmclankyEditForm-text');
+   var dopln = $('.dopln');
+   dopln.click(function(){
+//      console.log(dopln.text());
+      console.log(clanok);
+      var povtxt = clanok.val();
+      var pok = dopln.text();
+      console.log(pok);
+      console.log(povtxt);
+//      clanok.val(povtxt + pok);
+      return false;
+   });*/
+</script>
+{/block}

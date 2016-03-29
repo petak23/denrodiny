@@ -1,0 +1,1 @@
+<link n:foreach="$files as $css" rel="stylesheet" type="text/css" href="{if strpos($css, 'http') === FALSE}{$basePath}/www/{/if}{$css}">

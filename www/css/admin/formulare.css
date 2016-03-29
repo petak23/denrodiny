@@ -1,0 +1,163 @@
+/* AUTHOR: Peter VOJTECH; CREATION DATE: 19.09.2012 */
+/* UPDATED 01.12.2015 - PV */
+form table {
+  width: 100%;
+  font-size: 90%;
+}
+form table td,
+form table th {
+  border: 0;
+  padding: 0;
+  padding-right: 0.2em;
+}
+form table td small {
+  color: #444;
+  font-size: 75%;
+  clear: both;
+  border: 1px solid #ccc;
+  background-color: #ffffba;
+  display: block;
+  margin: 2px 5px 2px 20px;
+  padding: 2px 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px 0 0.2em 0.3em;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px 0 0.2em 0.3em;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px 0 0.2em 0.3em;
+}
+form table th {
+  font-weight: normal;
+  color: #004801;
+  background: none;
+  text-align: left;
+  line-height: 1.5;
+  width: 25%;
+  padding: 0 0 0 1%;
+}
+form table p {
+  color: #aaa;
+  margin: 1em 0 0 0 ;
+}
+form table h3 .small {
+  font-size: 50%;
+  font-weight: normal;
+  color: #0098cf;
+}
+form table b {
+  color: #000;
+  font-weight: normal;
+}
+form .required th, .required label {
+  color: #cc0033;
+  /*font-weight: bold;*/
+}
+form .required td, .required .control-field {
+  background-color: rgba(255, 93, 59, 0.13);
+}
+form table input[type=text],
+form table input[type=email],
+form table input[type=password] {
+  padding: 0.3em;
+  border: 0;
+  border-bottom: 1px #ccc solid;
+}
+form table input:hover,
+form table input:focus {
+  background: #ffffba;
+}
+form table input.inpwidth,
+form table .inpwidth input {
+  width: 200px;
+}
+form table .heading input,
+form table input.heading {
+  font-size: 200%;
+  width: 90%;
+}
+form table input[readonly=readonly],
+form table input[readonly=readonly]:hover,
+form table input[readonly=readonly]:focus {
+  background: white;
+  color: #444444;
+}
+form table .strong input {
+  font-weight: bold;
+}
+form table .seoname input {
+  font-size: 80%;
+  color: #aaa;
+}
+/*form table input.date {
+  background: transparent url("../../ikonky/16/kalendar_16.png") no-repeat fixed right;
+  width: 90px;
+  height: 16px;
+  border-bottom: 1px solid #ccc;
+}*/
+form table .textarea {
+  width: 95%;
+  height: 300px;
+}
+form table a {
+  text-decoration: none;
+}
+form table a.del {
+  padding: 0 0.2em;
+}
+form table a.del:hover {
+  background: #fd4239;
+  color: #fff;
+}
+form table .r1 {
+  background: #ccf3ff;
+}
+form table tr.help td {
+  font-size: 75%;
+  color: #999999;
+  padding: 0.2em 1em;
+}
+form table fieldset label {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 100%;
+  display: inline-block;
+}
+form table fieldset.ikonky {
+  float: left;
+  margin: 0 20px 0 0;
+}
+form table fieldset.ikonky label {
+  width: 53px;
+}
+form table img.ikonkySmall {
+  width: 32px;
+  height: 32px;
+  background-color: #aaa;
+}
+form table .error {
+  font-weight: bold;
+  background-color: #333;
+  background-image: url(../../images/upozornenie_c.png);
+  background-repeat: no-repeat;
+  background-position: .5em center;
+  border: .3em solid #cc0033;
+  -webkit-border-radius: 0.3em;
+  -moz-border-radius: 0.3em;
+  border-radius: 0.3em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0.3em 0.3em 0 0.2em 0.3em;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 0.3em 0.3em 0 0.2em 0.3em;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0.3em 0.3em 0 0.2em 0.3em;
+  color: #fff;
+  padding: .5em .3em .5em 2.7em;
+  display: inline-block;
+}
+#admin fieldset.ikonky label {
+  width: 32px;
+}
+form .error li {
+  background-color: #F7A922;
+  color: red;
+  font-weight: bold;
+  list-style-type: none;
+  padding: 2px;
+}

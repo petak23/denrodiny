@@ -1,0 +1,30 @@
+{var $robots = noindex}
+{block head}
+<style>
+  .error-400 {
+    width: 100%;
+    text-align: center;
+  }
+  .error-400 h2 {
+    text-align: center;
+    color: #ac2925;
+  }
+  .error-400 p {
+    background-color: #ac2925;
+    color: white;
+    padding: 1em 2em;
+    margin: 0;
+    width: 75%;
+    font-weight: bold;
+    display: inline-block;
+  }
+</style>
+{/block}
+{block #content}
+<div class="error-400">
+  <h2 n:inner-block="title">{$h2}</h2>
+
+  <p>{$text}</p>
+</div>
+
+<p><small>{$err_code}</small></p>

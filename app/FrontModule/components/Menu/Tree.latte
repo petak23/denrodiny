@@ -1,0 +1,8 @@
+{if isset($startNode)}
+  {var $ukaz = isset($startNode->nodes) && count($startNode->nodes) ? TRUE : FALSE}
+  {var $level=1}
+  <div class="{$nastav['divClass']}" n:if="count($startNode->nodes)" n:tag-if="$nastav['divClass'] && $ukaz">
+    <h4 n:if="$ukaz">{if $nastav['nadpis']!=""}{$nastav['nadpis']}{else}<a href="{$startNode->link}" title="{$startNode->name}">{$startNode->name}</a>{/if}</h4>
+    {include 'menu_node.latte' node => $startNode, hideName => true, path=>$path, showAll=>$showAll, level=>$level, nastav=>$nastav, akoLi=>1}
+  </div>
+{/if}

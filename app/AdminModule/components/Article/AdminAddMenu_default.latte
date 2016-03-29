@@ -1,0 +1,12 @@
+{snippet addpolmenu}
+<h2 n:block="title, nadpis_h1">Pridanie novej položky do: <i>{$out["nadpis"]}</i></h2>
+<p>Vyberte si, prosím, druh položky, ktorú chcete pridať:</p>
+<ol n:inner-foreach="$out['ponuka'] as $po">
+  <li>
+    <a href="{plink $po['link'], id=>$po['id'], uroven=>$po['uroven']}" title="Pridanie novej položky">
+      <strong>{$po['presenter']}</strong>
+    </a>
+    - <small>{$po['popis']}</small>
+  </li>
+</ol>
+{/snippet}

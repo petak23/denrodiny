@@ -1,0 +1,22 @@
+{* Sablona pre slider pre SCSPP
+ *
+ * Modul: FRONT
+ *
+ * Posledna zmena(last change): 12.11.2015
+ * @copyright  Copyright (c) 2012 - 2015 Ing. Peter VOJTECH ml.
+ * @license
+ * @link       http://petak23.echo-msz.eu
+ *
+ * @param array    $slider  info. o obrazkoch slider-a
+ *
+*}
+<script type="text/javascript">
+  $(document).ready(function() {
+      $("#head-slider").backgroundCycle({
+          imageUrls: [{foreach $slider as $s}{var $sa = $basePath.'/www/files/slider/'.$s->subor}'{$sa|noescape}',{/foreach}],
+          fadeSpeed: 2000,
+          duration: 8000,
+          backgroundSize: SCALING_MODE_COVER
+      });
+  });
+</script>

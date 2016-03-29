@@ -1,0 +1,38 @@
+{* Template pre komponentu pre spravu komentarov
+ * Posledna zmena(last change): 01.02.2016
+ *
+ * @author Ing. Peter VOJTECH ml <petak23@gmail.com>
+ * @copyright Copyright (c) 2012 - 2016 Ing. Peter VOJTECH ml.
+ * @license
+ * @link http://petak23.echo-msz.eu
+ * @version 1.0.0
+ *
+ * @param array   $komentare  zoznam ucastnikov, ktory uz potvrdili ucast
+ * @param boolean $allowed_delete_komentare
+ * @param int     $id_oznam
+*}
+<div class="komentare" n:snippet="koment">
+  <fieldset>
+		<legend>
+      Komentáre 
+      {if count($komentare)}
+        <span class="badge">{count($komentare)}</span>
+        <a n:if="$allowed_delete_komentare" n:href="vymazKomentare!" title="Vymazanie komentárov" class="btn btn-danger btn-xs ajax button-right"><i class="fa fa-trash"></i></a>
+        <a class="btn btn-primary btn-xs button-right" role="button" data-toggle="collapse" href="#collapseKomment-{$id_oznam}" aria-expanded="false" aria-controls="collapseKomment-{$id_oznam}">Zobraz komentáre</a>     
+      {/if}
+    </legend>
+    {if count($komentare)}
+      <ul n:ifset="$komentare" class="collapse" id="collapseKomment-{$id_oznam}">
+        <li n:foreach="$komentare as $komentar" n:class="$iterator->isOdd() ? r1 : r2">
+          <span>
+            {$komentar->user_profiles->meno} {$komentar->user_profiles->priezvisko}
+            <small>{$komentar->timestamp|date:'j. n. Y H:i'}</small>
+          </span>
+          <p>{$komentar->text}</p>
+        </li>
+      </ul>
+    {else}
+      <span>Nie sú...</span>
+    {/if}  
+  </fieldset>
+</div>

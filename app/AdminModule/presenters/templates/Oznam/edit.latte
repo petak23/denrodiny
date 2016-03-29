@@ -1,0 +1,21 @@
+{var $robots = noindex}
+{block #content}
+<h2 n:block=title>{$h2}</h2>
+{control oznamEditForm}
+<h3>Pomôcky:</h3>
+<p>
+  <strong>Značky</strong> <code>#REGx# ...text ...#REG-Ax# ... alternatíva ...#/REGx#</code> určujú <code>text</code>, ktorý je prístupný len pre užívateľov s úrovňou registrácie min <code>x</code>. 
+    Text označený ako <code>alternatíva</code> sa zobrazí v prípade ak užívateľ má nižšiu úroveň registrácie.<br>
+  <strong>Značka</strong> <code n:syntax="off">{end}</code> určuje v texte zlom, ktorý sa zobrazí až po kliknutí na značku ...viac.
+</p>
+{block spec_js}
+{var $fileBrowseUrl = $basePath."/www/editors/filemanager/index.php?bezp_kod=".$bezp_kod}
+<script>
+  $('.jquery_ckeditor').ckeditor( function() { /* callback code */ }, {
+    extraPlugins : 'zalomenie',
+    customConfig : '../../js/ckconfig_oznam.js',
+    toolbar : {$CKtoolbar},
+    filebrowserBrowseUrl: {$fileBrowseUrl}
+  } );
+</script>
+{/block}

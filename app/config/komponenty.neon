@@ -1,0 +1,36 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+parameters:
+  komponenty:
+    odkazNaClanky:
+      nazov: 'Odkaz na článok'
+      jedinecna: FALSE  # Ci je mozne pridat len raz k clanku
+      fa_ikonka: 'link'
+      parametre: 
+        id_hlavne_menu: 
+          nazov: 'Id článku'
+        template:
+          nazov: 'Názov vzhľadu'
+          hodnoty: 
+            default: 'Základný'
+            bez_avatara: 'Len odkaz bez avatara'
+            to_foto_galery: 'Odkaz na fotogalériu'
+            to_article: 'Odkaz na článok'
+            foto_album: 'Odkaz pre fotogalériu'
+#            products: 'Odkaz na produkty'
+            dielnabies: 'Špeciálne pre web dielnabies.sk'
+    aktualne:
+      nazov: 'Aktualne oznamy(aktuality)'
+      fa_ikonka: 'newspaper-o'
+      jedinecna: TRUE
+      parametre: NULL
+#    produktZoznam:
+#      id: 2
+#      nazov: 'Zoznam produktov'
+#      fa_ikonka: 'columns'
+#      jedinecna: TRUE
+#      parametre: NULL

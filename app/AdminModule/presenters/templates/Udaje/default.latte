@@ -1,0 +1,7 @@
+{block content}
+<h2 n:block="title, nadpis_h1">{$h2}</h2>
+<div class="col-xs-12 col-md-12" n:if="$user->isAllowed('Admin:Udaje', 'add')">
+  <a n:href="Udaje:add"  title="Pridanie nového údaja" class="button-right edit-link">
+    <i class="fa fa-file-text fa-2x"></i>Pridanie nového údaja</a>
+</div>
+{control udajeTableGrid}

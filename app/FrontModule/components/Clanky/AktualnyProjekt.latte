@@ -1,0 +1,33 @@
+{* Sablona pre zobrazenie aktualnych projektov
+ *
+ * Modul: FRONT
+ *
+ * Posledna zmena(last change): 15.10.2015
+ * @copyright  Copyright (c) 2012 - 2015 Ing. Peter VOJTECH ml.
+ * @license
+ * @link       http://petak23.echo-msz.eu
+ *
+ * @param array    $clanok      clanky z DB
+ * @param array    $texty       texty roznych nadpisov a pod. ['h2', 'text_title_image']
+ * @param array    $error       chybove hlasenie
+ * @param array    $avatar_path cesta k titulnemu obrazku clanku
+*}
+<div n:snippet="aktualnyProjektSablona" class="zobraz-clanok">
+	<h2>{$texty['h2']}</h2>
+  {if $clanok}
+    {foreach $clanok as $c}
+      <h3><a href="{plink Clanky:default $c->id_hlavne_menu}" title="{$c->nazov}">{$c->nazov}</a></h3>
+      <div n:ifset="$error" class="st_upozorni">{$error}</div>
+      <a href="{plink Clanky:default $c->id_hlavne_menu}" title="{$c->nazov}">
+        {if isset($c->hlavne_menu->avatar) && is_file('www/'.$avatar_path.$c->hlavne_menu->avatar)}
+          <div class="avatar-img"><img src="{$basePath}/www/{$avatar_path}{$c->hlavne_menu->avatar}" alt="{$texty['text_title_image']}"></div>
+        {/if} 
+        {if isset($c->clanok_lang->anotacia)}
+          {$c->clanok_lang->anotacia}
+        {/if}
+      </a>
+    {/foreach}
+  {else}
+    {* Ak bude treba zobraziť niečo v prípade chýbajúceho aktualneho projektu *}
+  {/if}
+</div>

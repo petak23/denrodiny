@@ -1,0 +1,35 @@
+{block content}
+
+{var $user_loged = $user->isLoggedIn()}
+{var $allow_komentar = $user->isAllowed('Front:Oznam', 'komentar') && $user_loged  && $udaje['oznam_komentare']}
+{var $allow_ucast = $user->isAllowed('Front:Oznam', 'ucast') && $user_loged && $udaje['oznam_ucast']}
+
+<article class="article-main">
+<!--[if lt IE 9]><div class="article-main"><![endif]-->
+  <h2 n:inner-block="title">{$h2}</h2>
+  <div class="panel panel-primary" n:foreach="$oznamy as $oznam">
+    <div class="panel-heading">
+      <h3 class="panel-title">{var $oi = $oznam->ikonka}
+        {ifset $oi->id}
+          <img n:if="$oi->id > 0" src="{$basePath}/www/ikonky/64/{$oi->nazov}_64.png" alt="Ikonka">
+        {/ifset}  
+        <a name="{$oznam->spec_nazov}"></a>{$oznam->nazov}
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="oznam">
+        <a href="#" class="btn btn-primary btn-sm disabled button-right" role="button">{$plati_do}<strong>{$oznam->datum_platnosti|date:'j.n.Y'}</strong></a>
+        <small>{$zverejnene}{$oznam->datum_zadania|date:'j.n.Y'}</small>
+        {if $user_loged}
+          {!$oznam->text|textreg:$user->getIdentity()->id_registracia, $maxurovregistr|koncova_znacka}
+        {else}
+          {!$oznam->text|textreg:0, $maxurovregistr|koncova_znacka}
+        {/if}
+        <div class="meno">{$oznam->user_profiles->meno} {$oznam->user_profiles->priezvisko}</div>
+        {if $allow_ucast && $oznam->potvrdenie}{control potvrdUcast-$oznam->id}{/if}
+      </div>
+      {if $allow_komentar}{control komentar-$oznam->id}{/if}
+    </div> 
+  </div>
+<!--[if lt IE 9]></div><![endif]-->
+</article>

@@ -1,0 +1,28 @@
+
+{block content}
+<h2 n:block="title, nadpis_h1">Adresár webu</h2>
+
+<div class="col-xs-12 col-md-12" n:if="$user->isAllowed('Admin:Adresar', 'add')">
+  <a n:href="Adresar:add"  title="Pridanie novej adresy" class="button-right edit-link">
+    <i class="fa fa-file-text fa-2x"></i>Pridanie novej adresy</a>
+</div>
+<div class="col-xs-12 col-md-12 table-responsive">
+  <table class="table table-bordered table-striped table-hover table-clenovia">
+    <tr>
+      <th>Názov</th><th>Meno</th><th>Adresa</th><th>Telefón</th><th>Mobil</th><th>E-mail</th><th>Poznámka</th><th n:if="$user->isInRole('admin')"></th>
+    </tr>
+    <tr n:foreach="$adresy as $adr">
+      <td><a n:href="Adresar:edit $adr->id" title="{$adr->nazov|upper}">{$adr->nazov}</a></td>
+      <td>{$adr->meno}</td>
+      <td>{$adr->adresa}</td>
+      <td>{$adr->telefon}</td>
+      <td>{$adr->mobil}</td>
+      <td>{$adr->email}</td>
+      <td>{$adr->poznamka}</td>
+      <td class="editacne center" n:if="$user->isInRole('admin')">
+        <a href="{link confirmForm:confirmDelete! id => $adr->id, nazov => $adr->nazov, zdroj_na_zmazanie => 'adresu'}"
+          title="Vymazanie adresy {$adr->nazov}" class="vymaz">V</a>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,43 @@
+{* Sablona pre slider s meniacimi sa obrázkami
+ *
+ * Modul: FRONT
+ *
+ * Posledna zmena(last change): 16.03.2016
+ * @copyright  Copyright (c) 2012 - 2016 Ing. Peter VOJTECH ml.
+ * @license
+ * @link       http://petak23.echo-msz.eu, http://www.anigraph.eu
+ *
+ * @param array    $p_name              nazov presentera
+ * @param integer  $id_pre_zobrazenie   ak je presenter clanok, tak mám id clanku inak 0
+ * @param array    $slider              info. o obrazkoch slider-a
+ *
+ * Komentar:
+ *  O ZOBRAZENI polozky rozhoduje $s->zobrazenie a to:
+ *    - ak je == NULL => zobrazi sa vzdy
+ *    - ak je == 0    => zobrazi sa len pre presenter 'Homepage'
+ *    - ak je > 0     => zobrazi sa len pre presenter 'Clanky' a konkretne id_hlavne_menu
+ *
+ *  O tom ci obrazok bude aj odkaz rozhoduje $s->id_hlavne_menu a to:
+ *    - ak je == 0 alebo NULL => nie je odkaz
+ *    - ak je > 0             => je odkaz
+*}
+<style type="text/css">
+  .slider-panel {
+    width: {$nastavenie['x']}px;
+    height: {$nastavenie['y']}px;
+  }
+</style>
+<div class="slider-panel{if $p_name[1]!='Homepage'} slider-pod{/if} slider-typ-1" n:snippet="slider">
+  {* Sipky treba doplnit TU alebo za znacku {/foreach}*}
+  {foreach $slider as $s}
+    <div {first}class="aktivny"{/first}>
+      <a href="{plink Clanky:default $s->id_hlavne_menu}" title="{$s->nadpis}" n:tag-if="$s->id_hlavne_menu > 0"> 
+        <img src="{$basePath}/www/files/slider/{$s->subor}" alt="slider" lang="sk" dir="ltr">
+        <div id="slider-popis">
+          <h2>{$s->nadpis}</h2>
+          <p>{$s->popis}</p>
+        </div>
+      </a>
+    </div>
+  {/foreach}
+</div>

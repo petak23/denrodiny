@@ -1,0 +1,17 @@
+<div n:snippet="ukazClanokMoj" class="zobraz-clanok">
+  <h2>{$clanok->nazov} <small n:if="$user->isLoggedIn()">- Template: foto_album</small></h2>
+  <div n:ifset="$error" class="st_upozorni">{$error}</div>
+  {if ($article_avatar_view_in & 2) && isset($clanok->hlavne_menu->avatar) && is_file('www/'.$avatar_path.$clanok->hlavne_menu->avatar)}
+    <div class="avatar-img"><img src="{$basePath}/www/{$avatar_path}{$clanok->hlavne_menu->avatar}" alt="{$texty['text_title_image']}"></div>
+  {/if} 
+  <div class="datum">
+    <span n:if="$clanok_hlavicka & 1">{$clanok->hlavne_menu->modified|date:'j.n.Y'}</span>
+    <span n:ifset="$clanok->hlavne_menu->datum_platnosti">
+     {$texty["platnost_do"]}{$clanok->hlavne_menu->datum_platnosti|date:'j.n.Y'}
+    </span>
+    <span n:if="$clanok_hlavicka & 2">{$texty["zadal"]}{$clanok->hlavne_menu->user_profiles->priezvisko}</span>
+  </div>
+  <div n:if="isset($clanok->clanok_lang->text)" class="text-clanku">
+    {$clanok->clanok_lang->text|noescape|obr_v_txt|koncova_znacka}
+  </div>
+</div>

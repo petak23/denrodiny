@@ -1,0 +1,19 @@
+{var $robots = noindex}
+{block spec_js}
+<script n:if="count($pridanie)">
+  $(function() {
+    {foreach $pridanie as $j}
+    {var $j_naz = '#frm-menuEditForm-'.$j->skratka.'_nazov'}
+    {var $j_des = '#frm-menuEditForm-'.$j->skratka.'_description'}
+    $({$j_naz})
+      .focusout(function() {
+        var nazov = $(this).val();
+        $({$j_des}).val( nazov );
+      });
+    {/foreach}
+  });
+</script>
+{/block}
+{block #content}
+<h2 n:block=title>{$h2}</h2>
+{control menuEditForm}

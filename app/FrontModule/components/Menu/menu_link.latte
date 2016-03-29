@@ -1,0 +1,37 @@
+{* Cast sablony pre zobrazenie jednej polozky menu.
+    Potrebne premenne:
+      $node - polozka menu
+      $akoLi - int - polozka sa zobrazi ako li html tag ak je > 0
+      $nastav - pole nastaveni
+    ?  $basePath -
+*}
+{define #vnutro}
+{if strlen($nastav['avatar']) && $nastav['article_avatar_view_in']}
+  <div class="avatar-img">
+    {if isset($node->avatar) && is_file('www/'.$nastav['avatar'].$node->avatar)}
+      <img src="{$basePath}/www/{$nastav['avatar']}{$node->avatar}" alt="Titulný obrázok">
+    {else}
+      <img src="{$basePath}/www/ikonky/folder_image.png" alt="Titulný obrázok" class="not-found-avatar">
+    {/if}  
+  </div>
+{/if}
+<span n:ifset="$node->node_class" class="{$node->node_class}"></span> 
+<span class="node-text">
+  {$node->name}
+  <small n:if="isset($node->tooltip) && strlen(trim($node->tooltip))">{$node->tooltip}</small>
+</span>
+{/define}
+
+<li n:tag-if="isset($akoLi) && $akoLi" class="link pol-li-{$akoLi} {$node->itemClass}">
+  <span>
+    {if $node->link}
+      <a href="{$node->link}" title="{$node->name}">{include #vnutro}</a>
+    {else}
+      <span>{include #vnutro}</span>
+    {/if}
+    <p n:if="$nastav['anotacia'] && isset($node->anotacia) && strlen($node->anotacia)">
+      {$node->anotacia}
+      <a n:if="$node->link" href="{$node->link}" class="viac" title="{$node->name}">»»»</a>
+    </p>
+  </span>
+</li>

@@ -1,0 +1,54 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+parameters:
+  web_files:
+    default:
+      css: 
+        font: 'http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+        font-awesome: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'
+        bootstrap: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
+        bootstrap-theme: 'css/bootstrap-theme.css'
+        colorbox: 'css/colorbox.css'
+      js: 
+        jquery: 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
+        bootstrap: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
+        netteForms: 'js/netteForms.js'
+        nette_ajax: 'js/nette.ajax.js'
+        colorbox: 'js/jquery.colorbox-min.js'
+    Mapa:
+      css: []
+      js: []
+    Front:
+      css: ['css/templatemo_style.css']
+      js: ['/js/stickUp.min.js', 'js/templatemo_script.js']
+    Admin:
+      css: ['css/admin/cupertino/jquery-ui-1.10.4.custom.css', 'css/admin/formulare.css', 'css/admin/grid.css', 'css/admin/lavy.css', 'css/admin/stred_admin.css', 'css/admin/main_admin.css']
+      js: ['js/jquery-ui.min.js','js/jquery.ui.datepicker-sk.js', 'js/grid.js', 'js/pomocne_admin.js']
+      Oznam_add:
+        css: []
+        js: ['editors/ckeditor/ckeditor.js','editors/ckeditor/adapters/jquery.js']
+      Oznam_edit:
+        css: []
+        js: ['editors/ckeditor/ckeditor.js','editors/ckeditor/adapters/jquery.js']
+      Clanky_default:
+        css: []
+        js: []
+      Clanky_krok2:
+        css: []
+        js: ['editors/ckeditor/ckeditor.js','editors/ckeditor/adapters/jquery.js']
+      Clanky_edit2:
+        css: []
+        js: ['editors/ckeditor/ckeditor.js','editors/ckeditor/adapters/jquery.js']
+      Clanky_add2:
+        css: []
+        js: ['editors/ckeditor/ckeditor.js','editors/ckeditor/adapters/jquery.js']
+      Verzie_add:
+        css: []
+        js: ['editors/ckeditor/ckeditor.js','editors/ckeditor/adapters/jquery.js']
+      Verzie_edit:
+        css: []
+        js: ['editors/ckeditor/ckeditor.js','editors/ckeditor/adapters/jquery.js']

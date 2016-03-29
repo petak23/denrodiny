@@ -1,0 +1,11 @@
+<div class="row"> 
+  <div class="col-md-6 col-md-offset-3" n:inner-foreach="$flashes as $flash">
+    {var $nees = explode(',', $flash->type)}
+    <div class="alert alert-{$nees[0]} fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {if isset($nees[1]) && $nees[1] == 'n'}{!$flash->message}{else}{$flash->message}{/if}
+    </div>
+	</div>
+</div>

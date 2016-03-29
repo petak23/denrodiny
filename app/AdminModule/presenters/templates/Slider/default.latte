@@ -1,0 +1,51 @@
+{* Sablona pre vypis obrazkov slider-a
+ *
+ * Modul: ADMIN
+ *
+ * Posledna zmena(last change): 25.11.2015
+ * @copyright  Copyright (c) 2012 - 2015 Ing. Peter VOJTECH ml.
+ * @license
+ * @link       http://petak23.echo-msz.eu
+ *
+ * @param array  $slider_i Nastavenie slider-u
+ * @param Nette\Database\Table\Selection  $tabulka  obrazky z DB
+*}
+{block content}
+<h2 n:block="title, nadpis_h1">Administrácia slider-u</h2>
+
+<div class="alert alert-danger" role="alert">
+  <strong>Pozor!!!</strong> Odporúčaný rozmer obrázku je: <strong>{$slider_i['x']}x{$slider_i['y']}</strong> alebo násobky tejto veľkosti. Inak môže dôjsť k deformácii alebo orezaniu obrázku pri ukladaní!
+</div>
+<div class="col-xs-12 col-md-12">
+  <a n:if="$user->isAllowed('Admin:Slider', 'add')" n:href="Slider:add"  title="Pridaj položku" class="button-right edit-link"><i class="fa fa-plus fa-2x"></i>Pridaj položku</a>
+</div>
+<div class="col-xs-12 col-md-12 table-responsive">
+  <table class="table table-bordered table-striped table-hover table-slider">
+    <tr>
+      <th>Popis</th><th n:if="$slider_i['odkaz']">Id článku</th><th>Obrázok</th><th>Nadpis</br>Súbor</th><th>Zobrazenie</th><th>Poradie</th><th> </th>
+    </tr>
+    <tr n:foreach="$tabulka as $riadok">
+      <td>{$riadok->popis}</td>
+      <td n:if="$slider_i['odkaz']">{ifset $riadok->id_hlavne_menu}{$riadok->id_hlavne_menu}{/ifset}</td>
+      <td>
+        <a n:href="Slider:edit $riadok->id" title="{$riadok->subor} - editácia položky slider-u">
+          {var $slider_o = is_file('www/files/slider/'.$riadok->subor) ? 'files/slider/'.$riadok->subor : 'images/otaznik.png'}
+          <img src="{$basePath}/www/{$slider_o}" alt="obrazok">
+        </a>
+      </td>
+      <td>
+        <a n:href="Slider:edit $riadok->id" title="{$riadok->subor} - editácia položky slider-u">
+          <strong>{if $riadok->nadpis !== NULL}{$riadok->nadpis}{else}<small>Bez nadpisu</small>{/if}</strong>
+          <br>
+          {$riadok->subor}
+        </a>
+      </td>
+      <td>{if $riadok->zobrazenie == NULL}Vždy{else}{$riadok->zobrazenie}{/if}</td>
+      <td>{$riadok->poradie}</td>
+      <td class="editacne center">
+        <a href="{link confirmForm:confirmDelete! id => $riadok->id, nazov => $riadok->subor, zdroj_na_zmazanie => 'obrázok'}"
+           n:if="$user->isAllowed('Admin:Slider', 'del')" title="Vymazanie {$riadok->subor}" class="vymaz">V</a>
+      </td>
+    </tr>
+  </table>
+</div>

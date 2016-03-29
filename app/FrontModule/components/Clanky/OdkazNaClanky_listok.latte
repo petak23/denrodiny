@@ -1,0 +1,4 @@
+<div class="img-wrapper">
+  <img n:if="isset($avatar) && is_file('www/files/menu/'.$avatar)" class="img-responsive img-circle" src="{$basePath}/www/files/menu/{$avatar}" alt="{$nazov}"><br>
+  <a class="btn btn-xl btn-warning btn-block" href="{$absolutna}"><i class="fa fa-coffee fa-lg"></i>{$nazov}</a>
+</div>

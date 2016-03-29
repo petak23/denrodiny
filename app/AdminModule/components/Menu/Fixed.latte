@@ -1,0 +1,47 @@
+{define #link_in}
+	{if strlen($nastav['avatar']) && ($nastav['article_avatar_view_in'] & 1)}
+		{var $a = ($avatar && is_file('www/'.$avatar)) ? $avatar : "images/bga_w.png"}
+    <div class="avatar-img">
+			<img n:if="!isset($node->node_class)" src="{$basePath}/www/{$a}" alt="{$nastav['text_title_image']}">
+      <i n:if="isset($node->node_class)" class="{$node->node_class} fa-5x"> </i>
+		</div>
+  {elseif ($nastav['article_avatar_view_in'] & 1)}
+    <div class="avatar-img">
+      <i n:if="isset($node->node_class)" class="{$node->node_class} fa-5x"> </i>
+			<img n:if="!isset($node->node_class)" src="{$basePath}/www/images/bga_w.png" alt="{$nastav['text_title_image']}">
+		</div>
+	{/if}
+  <div>{$node->name}
+  <small n:if="isset($node->tooltip)">{$node->tooltip}</small></div>
+{/define}
+
+{define #link}
+<li n:tag-if="isset($akoLi) && $akoLi" class="pol-li-{$akoLi} {$node->itemClass}">
+  {var $avatar = strlen($nastav['avatar']) && isset($node->avatar) ? $nastav['avatar'].$node->avatar : FALSE}
+  <span>
+    {if $node->link}
+      <a href="{$node->link}" title="{$node->name}">
+				{*<i n:if="isset($node->node_class)" class="{$node->node_class}"> </i>*}
+        {include #link_in node=>$node, avatar => $avatar}
+      </a>
+    {else}
+      <span>{include #link_in node=>$node, avatar => $avatar}</span>
+    {/if}
+    <p n:if="$nastav['anotacia'] && isset($node->anotacia)">
+      {$node->anotacia}
+      <a n:if="$node->link" href="{$node->link}" class="viac" title="{$node->name}">
+				»»»
+			</a>
+    </p>
+  </span>
+</li>
+{/define}
+
+{if isset($startNode) && count($startNode->nodes)}
+  <h4 n:if="$nastav['nadpis']">{$nastav['nadpis']}</h4>
+  <ul {if $nastav['divClass']}class="{$nastav['divClass']}"{/if}>
+  {foreach $startNode->nodes as $subNode}
+    {include #link node => $subNode, akoLi => $iterator->counter}
+  {/foreach}
+  </ul>
+{/if}

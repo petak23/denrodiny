@@ -1,0 +1,26 @@
+{* Sablona pre zobrazenie poslednych prihlaseni
+ *
+ * Modul: ADMIN
+ *
+ * Posledna zmena(last change): 16.10.2015
+ * @copyright  Copyright (c) 2012 - 2015 Ing. Peter VOJTECH ml.
+ * @license
+ * @link       http://petak23.echo-msz.eu
+ *
+ * @param string   $h3      Nadpis
+ * @param array    $last    Data z DB tabulky user_prihlasenie
+ * @param array    $user    Data o uzivatelovy
+*}
+<div class="last-login">
+	<h4>{$h3}</h4>
+  <table n:inner-foreach="$last as $c">
+    <tr n:class="$iterator->isOdd() ? r1 : r2">
+      <td n:class="$user->id == $c->id_user_profiles ? zvyrazni">
+        {$c->user_profiles->meno} {$c->user_profiles->priezvisko|upper}
+      </td>
+      <td n:class="$user->id == $c->id_user_profiles ? zvyrazni">
+        {$c->prihlasenie_datum|date:'%d.%m.%Y %H:%M'}
+      </td>
+    </tr>
+  </table>
+</div>

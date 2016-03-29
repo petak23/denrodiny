@@ -1,0 +1,19 @@
+{block content}
+<div class="col-xs-12 col-md-12">
+  <h2 n:block="title, nadpis_h1">Administrácia</h2>
+  {if $id_menu == 0}
+    <ul class="main-admin-menu" n:inner-foreach="$admin_menu as $am">
+      <li n:if="$am->id_registracia <= $user->getIdentity()->id_registracia">
+        <a n:href="$am->odkaz" title="{$am->nazov}">
+          <div class="avatar-img">
+            <img src="{$basePath}/www/{$am->avatar}" n:ifset="$am->avatar" alt="{$am->nazov}">
+          </div>
+          <div>{$am->nazov}</div>
+        </a>
+      </li>
+    </ul>
+  {else}
+    <a n:if="$view_add_link" href="{plink Menu:addpol -1*$id_menu}" title="Pridanie položky do časti" class="button-right edit-link"><i class="fa fa-plus fa-2x"></i>Pridanie položky do časti</a>
+    {control menu:fixed, cast=>$id_menu, divClass => main-admin-menu, avatar=>$avatar_path, anotacia => FALSE, article_avatar_view_in=>1}
+  {/if}
+</div>

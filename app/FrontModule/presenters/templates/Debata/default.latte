@@ -1,0 +1,28 @@
+{block content}
+<article class="article-main row">
+<!--[if lt IE 9]><div class="article-main row"><![endif]-->
+  <div  class="col-xs-10 col-md-10 col-md-offset-1">
+    <h2 n:inner-block="title">{$h2}</h2>
+    <div id="debata">
+      {control komentarForm}
+      {control confirmForm}
+      <table n:ifset="$komentare" class="table table-striped" n:inner-foreach="$komentare as $komentar">
+        <tr>
+          <td>
+            <span>
+              {$komentar->user_profiles->meno} {$komentar->user_profiles->priezvisko}
+              <small>{$komentar->timestamp|date:'j. n. Y H:i'}</small>
+              {if $control->siVlastnik('edit', $komentar->id_user_profiles)}
+                <a n:href="Debata:edit $komentar->id" title="Editácia" class="edit">E</a>
+                <a href="{link confirmForm:confirmDelete! id => $komentar->id, zdroj_na_zmazanie => $txt_na_zmaz, nazov => $komentar->id}" n:if="$user->isAllowed('Front:Debata' , 'del')" title="Vymazanie" class="vymaz">V</a>
+              {/if}
+            </span>
+            <p>{$komentar->text}</p>
+          </td>
+        </tr>
+      </table>
+      {control vp}
+    </div>
+  </div>
+<!--[if lt IE 9]></div><![endif]-->
+</article>

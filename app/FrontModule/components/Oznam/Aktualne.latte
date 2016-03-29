@@ -1,0 +1,29 @@
+<div n:snippet="OznamyAktualne" class="oznamy">
+  <h2 n:inner-block="title">{$texty['h2']}</h2>
+  {if count($oznamy)}
+    <div class="panel panel-primary" n:foreach="$oznamy as $oznam">
+      <div class="panel-heading">
+        <h3 class="panel-title">{var $oi = $oznam->ikonka}
+          {ifset $oi->id}
+            <img n:if="$oi->id > 0" src="{$basePath}/www/ikonky/64/{$oi->nazov}_64.png" alt="Ikonka">
+          {/ifset}  
+          <a name="{$oznam->spec_nazov}"></a>{$oznam->nazov}
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="oznam">
+          <a href="#" class="btn btn-primary btn-sm disabled button-right" role="button" n:if="$nastavenie['datum_platnosti']">Platí do: {*$plati_do*}<strong>{$oznam->datum_platnosti|date:'j.n.Y'}</strong></a>
+          <small n:if="$nastavenie['datum_zadania']">{*$zverejnene*}{$oznam->datum_zadania|date:'j.n.Y'}</small>
+          {if $user->isLoggedIn()}
+            {!$oznam->text|textreg:$user->getIdentity()->id_registracia, 5|koncova_znacka} {*$maxurovregistr*}
+          {else}
+            {!$oznam->text|textreg:0, 5|koncova_znacka} {*$maxurovregistr*}
+          {/if}
+          <div class="meno">{$oznam->user_profiles->meno} {$oznam->user_profiles->priezvisko}</div>
+        </div>
+      </div> 
+    </div>
+  {else}
+    <span class="stav st_info">Nie je žiadna aktuálna aktualita(oznam)</span>
+  {/if}
+</div>

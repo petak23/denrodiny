@@ -1,0 +1,28 @@
+{if $templateType == "nav"}
+	{foreach $path as $k => $node}
+    {if $k >= $startLevel}
+      {if $node->link}
+        <a href="{$node->link}" title="{$node->name}">{$node->name}</a>
+      {else}
+        <span n:class="$node->itemClass">{$node->name}</span>
+      {/if}
+      {sep} {$navSeparator} {/sep}
+    {/if}
+	{/foreach}
+{elseif $templateType == "single"}
+	{if isset($startNode) && count($startNode->nodes)}
+		<h4 n:if="$nastav['nadpis']">{$nastav['nadpis']}</h4>
+    <ul {if $nastav['divClass']}class="{$nastav['divClass']}"{/if}>
+		{foreach $startNode->nodes as $subNode}
+			{include 'menu_link.latte' node => $subNode, akoLi => $iterator->counter, nastav=>$nastav}
+		{/foreach}
+    </ul>
+	{/if}
+{elseif $templateType == "tree"}
+  {var $ukaz = isset($startNode) && isset($startNode->nodes) && count($startNode->nodes)}
+  {var $level=1}
+  {if $nastav['divClass'] && $ukaz}<div class="{$nastav['divClass']}">{/if}
+    <h4 n:if="$nastav['nadpis'] && $ukaz">{$nastav['nadpis']}</h4>
+    {include 'menu_node.latte' node => $startNode, /*hideName => true,*/ path=>$path, showAll=>$showAll, level=>$level, nastav=>$nastav, akoLi=>$akoLi}
+  {if $nastav['divClass'] && $ukaz}</div>{/if}
+{/if}

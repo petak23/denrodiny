@@ -1,0 +1,156 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+services:
+  - DbTable\Authenticator
+
+  authorizator:
+    class: Nette\Security\Permission
+    setup:
+      - addRole('guest')
+      - addRole('register', 'guest')
+      - addRole('pasivny', 'register')
+      - addRole('aktivny', 'pasivny')
+      - addRole('spravca', 'aktivny')
+      - addRole('admin', 'spravca')
+      - addResource('Front:Homepage')
+      - addResource('Front:User')
+      - addResource('Front:UserLog')
+      - addResource('Front:Dokumenty')
+      - addResource('Front:Error')
+      - addResource('admin')
+      - addResource('Front:Oznam')
+      - addResource('Front:Pokladnicka')
+      - addResource('Front:Debata')
+      - addResource('Front:Clanky')
+      - addResource('Front:Menu')
+      - addResource('Front:Produkt')
+      - addResource('Admin:Homepage')
+      - addResource('Admin:User')
+      - addResource('Admin:Verzie')
+      - addResource('Admin:Menu')
+      - addResource('Admin:Udaje')
+      - addResource('Admin:Dokumenty')
+      - addResource('Admin:Lang')
+      - addResource('Admin:Slider')
+      - addResource('Admin:Registracia')
+      - addResource('Admin:Oznam')
+      - addResource('Admin:Pokladnicka')
+      - addResource('Admin:Debata')
+      - addResource('Admin:Clanky')
+      - addResource('Admin:Produkt')
+      - addResource('Admin:Texyla')
+      - addResource('Admin:Adresar')
+      - allow('guest', ['Front:Dokumenty', 'Front:Oznam', 'Front:Clanky', 'Front:Menu'])
+      - allow('guest', 'Front:User', ['registracia', 'activateUser', 'forgottenPassword', 'resetPassword', 'default'])
+      - allow('guest', 'Front:UserLog', ['activateNewEmail'])
+      - allow('guest', 'Front:Produkt', ['default'])
+      - allow('guest', ['Front:Homepage', 'Front:Error'])
+      - allow('register', 'Front:UserLog', ['default', 'mailChange', 'passwordChange'])
+      - allow('register', 'Front:Oznam', 'ucast')
+      - allow('register', 'Front:Debata', ['default', 'edit', 'del'])
+      - allow('pasivny', ['Front:Oznam', 'Front:Clanky'], 'komentar')
+      - allow('pasivny', 'Front:Pokladnicka', 'default')
+      - allow('aktivny', 'admin', 'enter')
+      - allow('aktivny', ['Admin:Clanky', 'Admin:Menu'], ['default', 'edit', 'edit2', 'add', 'add2', 'prilohy', 'del'])
+      - allow('aktivny', 'Admin:Homepage', 'default')
+      - allow('aktivny', 'Admin:Adresar', ['default', 'edit'])
+      - allow('aktivny', 'Admin:Dokumenty')
+      - allow('spravca', ['Admin:Clanky', 'Admin:Menu'], ['addpol', 'delete', 'pocitadlo'])
+      - allow('spravca', ['Admin:Verzie', 'Admin:User'], 'default')
+      - allow('spravca', ['Admin:Udaje'], ['default', 'edit'])
+      - allow('spravca', 'Admin:Oznam', ['default', 'neaktualne', 'add', 'edit'])
+      - allow('spravca', ['Admin:Produkt', 'Admin:Slider', 'Admin:Texyla'])
+      - allow('spravca', 'Admin:Lang', ['default', 'add', 'edit'])
+      - allow('spravca', 'Admin:Registracia', ['default', 'edit'])
+      - allow('spravca', 'Admin:Pokladnicka', 'default')
+      - allow('spravca', 'Admin:Homepage', 'udrzba')
+      - allow('admin')
+
+  - DbTable\Admin_menu
+  - DbTable\Adresar
+  - DbTable\Clanok_komentar
+  - DbTable\Clanok_komponenty
+  - DbTable\Clanok_lang
+  - DbTable\Debata
+  - DbTable\Dlzka_novinky
+  - DbTable\Dokumenty
+  - DbTable\Druh
+  - DbTable\Hlavicka
+  - DbTable\Hlavne_menu
+  - DbTable\Hlavne_menu_lang
+  - DbTable\Hlavne_menu_cast
+  - DbTable\Ikonka
+  - DbTable\Lang
+  - DbTable\Pokladnicka
+  - DbTable\Produkt_images
+  - DbTable\Produkt_lang
+  - DbTable\Produkt_prepoj
+  - DbTable\Registracia
+  - DbTable\Slider
+  - DbTable\Udaje
+  - DbTable\Udaje_typ
+  - DbTable\User_prihlasenie
+  - DbTable\User_profiles
+  - DbTable\Users
+  - DbTable\Verzie
+#blok Oznam
+  - DbTable\Oznam
+  - DbTable\Oznam_komentar
+  - DbTable\Oznam_ucast
+  - DbTable\Oznam_volba
+
+# services for language support
+  - Language_support\Clanky
+  - Language_support\Dokumenty
+  - Language_support\Debata
+  - Language_support\Error
+  - Language_support\Homepage
+  - Language_support\Pokladnicka
+  - Language_support\Oznam
+  - Language_support\UserLog
+  - Language_support\User
+
+# For uploads
+  - ForUploads\Images
+
+# forms
+  - App\AdminModule\Presenters\Forms\Article\IEditMenuFormFactory
+  - App\AdminModule\Components\Article\TitleArticle\ZmenVlastnikaFormFactory
+  - App\AdminModule\Components\Article\TitleArticle\ZmenUrovenRegistracieFormFactory
+  - App\AdminModule\Components\Article\TitleArticle\ZmenDatumPlatnostiFormFactory
+  - App\AdminModule\Components\Article\TitleImage\EditTitleImageFormFactory
+  - App\AdminModule\Components\Clanky\PrilohyClanok\EditPrilohyFormFactory
+  - App\AdminModule\Presenters\Forms\Produkt\ProduktEditFormFactory
+  - App\AdminModule\Presenters\Forms\Slider\EditSliderFormFactory
+  - App\AdminModule\Presenters\Forms\Udaje\EditUdajeFormFactory
+  - App\AdminModule\Presenters\Forms\Udaje\AddTypeUdajeFormFactory
+  - App\AdminModule\Presenters\Forms\User\AddUserFormFactory
+  - App\AdminModule\Presenters\Forms\User\EditUserFormFactory
+  - App\AdminModule\Presenters\Forms\Adresar\EditAdresarFormFactory
+  - App\AdminModule\Presenters\Forms\Verzie\EditVerzieFormFactory
+  - App\AdminModule\Presenters\Forms\Oznam\EditOznamFormFactory
+
+# component services 
+
+  - App\AdminModule\Components\Article\IAdminAddMenu
+  - App\AdminModule\Components\Article\TitleArticle\ITitleArticleControl
+  - App\AdminModule\Components\Article\TitleImage\ITitleImageControl
+  - App\AdminModule\Components\Oznam\IAktualneOznamyControl
+  - App\AdminModule\Components\Oznam\IPotvrdUcastControl
+  - App\AdminModule\Components\Oznam\IKomentarControl
+  - App\AdminModule\Components\User\IUserLastControl
+  - App\AdminModule\Components\Clanky\IZobrazClanokControl
+  - App\AdminModule\Components\Clanky\PrilohyClanok\IPrilohyClanokControl
+
+  - App\FrontModule\Components\Oznam\IAktualneOznamyControl
+  - App\FrontModule\Components\Oznam\IPotvrdUcastControl
+  - App\FrontModule\Components\Oznam\IKomentarControl
+  - App\FrontModule\Components\Clanky\IAktualneClankyControl
+  - App\FrontModule\Components\Clanky\IAktualnyProjektControl
+  - App\FrontModule\Components\Clanky\IKomentarControl
+  - App\FrontModule\Components\Clanky\IPrilohyClanokControl
+  - App\FrontModule\Components\Slider\ISliderControl

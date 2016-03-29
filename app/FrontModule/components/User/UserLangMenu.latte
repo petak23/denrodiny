@@ -1,0 +1,16 @@
+<div class="user-panel .col-xs-12 .col-md-8" n:snippet="userLangMenu" n:if="count($menu_user)">
+	<ul  n:inner-foreach="$menu_user as $mu">
+		<li>
+			<a href="{ifset $mu->abs_link}{$mu->abs_link}{else}{if is_array($mu->odkaz)}{plink $mu->odkaz[0], $mu->odkaz[1]}{else}{plink $mu->odkaz}{/if}{/ifset}" title="{$mu->title}" class="{$mu->class}" target="{$mu->target}">
+        <strong n:if="isset($mu->ikonka)" class="fa fa-{$mu->ikonka}"></strong> {$mu->nazov|noescape}
+      </a>
+		</li>
+		{sep}<li class="separator"></li>{/sep}
+	</ul>
+	<div n:if="!$user->isLoggedIn()" id="my-sign-in-form">
+		{control signInForm}
+		<a n:if="isset($fl)" href={$fl->odkaz} title={$fl->title} class={$fl->class}>
+			<strong n:if="isset($fl->ikonka)" class="fa fa-{$fl->ikonka}"></strong> {$fl->nazov}
+		</a>
+	</div>
+</div>

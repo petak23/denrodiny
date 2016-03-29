@@ -1,0 +1,15 @@
+<div class="komentare" n:snippet="koment">
+  <fieldset>
+		<legend>Komentáre:</legend>
+    {control komentarForm}
+    <ul n:ifset="$komentare" class="komm">
+      <li n:foreach="$komentare as $komentar" n:class="$iterator->isOdd() ? r1 : r2">
+        <span>
+          {$komentar->user_profiles->meno} {$komentar->user_profiles->priezvisko}
+          <small>{$komentar->timestamp|date:'j. n. Y H:i'}</small>
+        </span>
+        <p>{$komentar->text}</p>
+      </li>
+    </ul>
+  </fieldset>
+</div>

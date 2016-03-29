@@ -1,0 +1,250 @@
+/* AUTOR: Peter VOJTECH ml. - VZ CREATION DATE: 19.03.2012 */
+/* UPDATED 06.02.2013 - PV*/
+.nepripojene{
+  display: inline-block;
+  float: right;
+  border: 1px solid #DDDDDD;
+  font-size: 70%;
+  color: #5c1611;
+}
+#fotogalery .galery{
+  text-align: center;
+}
+#fotogalery .galery img, #fotogalery .fotky img{
+  display: inline-block;
+  margin: 0;
+  border: 3px solid rgba(128,128,128,0.5);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: opacity 0.2s linear;
+	-moz-transition: opacity 0.2s linear;
+	-o-transition: opacity 0.2s linear;
+	-ms-transition: opacity 0.2s linear;
+	transition: opacity 0.2s linear;
+  opacity: 0.7;
+}
+#fotogalery .galery img:hover, #fotogalery .fotky img:hover{
+  opacity: 1;
+}
+#fotogalery .galery img{
+  width: 200px;
+  height: 150px;
+}
+#fotogalery .galery a{
+  display: inline-block;
+  position: relative;
+  top: -155px;
+  left: -15px;
+  height: 30px;
+  background-color: transparent; /*rgba(255,255,255,0.4);*/
+  width: 200px;
+  padding-left: 5px;
+}
+#fotogalery .galery span{
+  position: relative;
+  top: -25px;
+}
+#fotogalery .fotky img{
+  margin: 1px;
+  border: 2px solid rgba(128,128,128,0.5);
+}
+#fotogalery .popis{
+  background: rgba(256,256,180,0.3);
+  border: 3px solid rgba(256,256,180,0.5);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 5px 15px;
+}
+#fotogalery table{
+  position: relative;
+  top: -25px;
+  left: 0px;
+}
+#fotogalery .image, #fotogalery .album, .album {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    color: #000000;
+    display: block;
+    float: left;
+    margin: 5px;
+    position: relative;
+    text-decoration: none;
+    z-index: 5;
+}
+#fotogalery .image{
+    height: 150px;
+    width: 200px;
+}
+/*#fotogalery .album{
+    height: 72px;
+    width: 96px;
+}*/
+.editPanelL, .editPanelR {
+    cursor: pointer;
+    font-size: 150%;
+}
+.editPanelR, .editPanelR {
+    background: rgba(255,255,255,0.8);
+    height: 24px;
+    opacity: 0.6;
+    position: absolute;
+    right: 2px;
+    top: -4px;
+}
+.editPanelR:hover, .editPanelR:hover {
+    opacity: 1;
+}
+.editPanelL {
+    background: transparent;
+    height: 24px;
+    left: -4px;
+    opacity: 0.3;
+    position: absolute;
+    top: -4px;
+    width: 24px;
+}
+.editPanelL:hover {
+    opacity: 1;
+}
+.editPanelL .isSet, .editPanelR .isSet{
+    color: #0028ff;
+}
+#fotogalery td{
+  vertical-align: top;
+}
+
+#fotogalery img.image{
+  width: 200px;
+  height: 150px;
+  opacity: 0.7;
+  margin-left: 10px;
+  float: left;
+  display: inline-block;
+}
+#fotogalery img.image:hover{
+  opacity: 0.95;
+}
+#fotogalery .new{
+  /*background: url(../../ikonky/hand-draving/128x128/add.png) no-repeat center transparent;*/
+}
+#fotogalery h4{
+  display: inline-block;
+  clear: both;
+}
+#fotogalery form {
+	/*position: absolute;
+	top: 50px;
+	left: 5px;*/
+  display: inline-block;
+}
+#fotogalery input {
+	background-color: rgba(255,255,255,0.5);
+	border-bottom: 1px solid #999;
+	font-size: 90%;
+}
+#fotogalery form th{
+	font-size: 80%;
+	background-color: rgba(255,200,200,0.3);
+	color: #003;
+	border-bottom: 1px solid #999;
+}
+#fotogalery select {
+	background-color: rgba(255,255,255,0.4);
+	border-bottom: 1px solid #999;
+	font-size: 90%;
+}
+
+/* ---------------------- */
+.galeria {
+  position: relative;
+  vertical-align: top;
+  display: inline-block;
+  width: 98%;
+  border: 1px solid #DDDDDD;
+  /* border-radius */
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* box-shadow */
+  -webkit-box-shadow: rgba(20,20,20,0.5) 0px 1px 2px;
+  -moz-box-shadow: rgba(20,20,20,0.5) 0px 1px 2px;
+  box-shadow: rgba(20,20,20,0.5) 0px 1px 2px;
+  padding: 1%;
+}
+
+.galeria img{
+  width: 128px;
+  height: 128px;
+  opacity: 0.7;
+  margin-right: 10px;
+  float: left;
+  display: inline-block;
+  border: 1px solid #DDDDDD;
+  /* border-radius */
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* box-shadow */
+  -webkit-box-shadow: rgba(20,20,20,0.5) 0px 1px 2px;
+  -moz-box-shadow: rgba(20,20,20,0.5) 0px 1px 2px;
+  box-shadow: rgba(20,20,20,0.5) 0px 1px 2px;
+  padding: 2px;
+}
+.new img{
+  opacity: 0.5;
+}
+.galeria img:hover{
+  opacity: 0.95;
+}
+.new{
+  opacity: 0.5;
+}
+.galeria form {
+  display: inline-block;
+  width: 60%;
+}
+.album {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    color: #000000;
+    display: block;
+    float: left;
+    margin: 5px;
+    position: relative;
+    text-decoration: none;
+    z-index: 5;
+}
+.album img.ine{
+  width: 90px;
+  height: 90px;
+}
+.editPanel{
+    cursor: pointer;
+    font-size: 100%;
+    position: absolute;
+    top: 0px;
+    height: 24px;
+    font-size: 85%;
+}
+.paR {
+    background: rgba(255,255,255,0.8);
+    height: 24px;
+    opacity: 0.6;
+    right: 2px;
+}
+.paL {
+    background: transparent;
+    left: -4px;
+    opacity: 0.3;
+    width: 24px;
+}
+.editPanel:hover{
+    opacity: 1;
+}
+.isSet{
+    color: #0028ff;
+}

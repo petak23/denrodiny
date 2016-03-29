@@ -1,0 +1,741 @@
+{* Posledna zmena(last change): 15.02.2016
+ *
+ * @author Ing. Peter VOJTECH ml <petak23@gmail.com>
+ * @copyright Copyright (c) 2012 - 2016 Ing. Peter VOJTECH ml.
+ * @license
+ * @link http://petak23.echo-msz.eu
+ * @version 1.0.1a
+ *
+ * @param $id_nadradeny_aktuality
+ * pouzite komponenty: aktualneClanky, ukazClanok, ukazAdresu, odkazNaClanky
+*}
+{block content}
+
+{*<div class="templatemo-top-bar" >
+    <div class="container">
+        <div class="subheader">
+            <div id="phone" class="pull-left">
+                    <img src="{$basePath}/www/images/phone.png" alt="phone"/>
+                    010-020-0340
+            </div>
+            <div id="email" class="pull-right">
+                    <img src="{$basePath}/www/images/email.png" alt="email"/>
+                    contact@website.com
+            </div>
+        </div>
+    </div>
+</div>*}
+<div class="templatemo-top-menu" id="templatemo-home">
+    <div class="container">
+        <!-- Static navbar -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand"><img src="{$basePath}/www/images/small_logo1.jpg" alt="Deň rodiny 2015" title="Deň rodiny 2015" /></a>
+                </div>
+                <div class="navbar-collapse collapse" id="templatemo-nav-bar">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top: 40px;">
+                      <li class="active"><a href="#templatemo-home" class="btn-back-to-top">DOMOV</a></li>
+                        <li><a href="#templatemo-info" class="nav">ZÁKLADNÉ INFORMÁCIE</a></li>
+                        <li><a href="#templatemo-program" class="nav">PROGRAM</a></li>
+                        <li><a href="#templatemo-blog" class="nav">ĎALŠIE INFORMÁCIE</a></li>
+                        <li><a href="#templatemo-miesto" class="nav">MIESTO KONANIA</a></li>
+                        <li><a href="#templatemo-partnery" class="nav">PARTNERI PODUJATIA</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+        </div><!--/.navbar -->
+    </div> <!-- /container -->
+</div>
+
+<div>
+    <!-- Carousel -->
+    <div id="templatemo-carousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#templatemo-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#templatemo-carousel" data-slide-to="1"></li>
+            {*<li data-target="#templatemo-carousel" data-slide-to="2"></li>*}
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="container">
+                    <div class="carousel-caption">
+                      {*<img src="{$basePath}/www/images/foto-bg-02.jpg" alt="Deň rodiny 2015 - Poprad"><br>*}
+                      <h1>DEŇ RODINY 2015</h1>
+                      <p>Poprad 7.6.2015</p>
+                      
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="container">
+                        <div class="carousel-caption">
+                            <div class="col-sm-6 col-md-6">
+                              <h1>KDE ?</h1>
+                              <p>Námestie sv. Cyrila a Metoda v Poprade</p>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                              <h1>KEDY ?</h1>
+                              <p>Začíname 7.6.2015 o 14:00</p>
+                            </div>
+                        </div>
+                </div>
+            </div>*}
+            {*<div class="item">
+                <div class="container">
+                    <div class="carousel-caption">
+                      <h1>RESPONSIVE LAYOUT</h1>
+                        <p>This template is free to download and use for any website. This is a mobile-ready layout using Bootstrap framework.</p>
+                        <p><a class="btn btn-lg btn-orange" href="#" role="button">Read More</a></p>
+                    </div>
+                </div>
+            </div>*}
+        </div>
+        <a class="left carousel-control" href="#templatemo-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#templatemo-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /#templatemo-carousel -->
+</div>
+
+<div class="templatemo-welcome" id="templatemo-welcome">
+    <div class="container">
+        <div class="templatemo-slogan text-center">
+            <span class="txt_darkgrey">Vítajte na stránke s informáciami o </span><br><span class="txt_orange">Dni rodiny 2015 v Poprade</span>
+            <p class="txt_slogan"><i>Tu sa dozviete všetko podstatné, čo o tomto dni potrebujete vedieť.</i></p>
+            <img src="{$basePath}/www/images/700x300.png" alt="Deň rodiny 2015" />
+        </div>	
+    </div>
+</div>
+
+<div class="templatemo-service" id="templatemo-info">
+    <div class="container">
+      <div class="row">
+        <div class="templatemo-line-header">
+          <div class="text-center">
+            <hr class="team_hr team_hr_left hr_gray"/><span>ZÁKLADNÉ INFORMÁCIE</span><hr class="team_hr team_hr_right hr_gray" />
+          </div>
+        </div>
+      </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="templatemo-service-item">
+                    <div>
+                      <i class="fa fa-info-circle fa-3x"></i>
+                      <span class="templatemo-service-item-header">HLAVNÉ ÚDAJE</span>
+                    </div>
+                    <p>
+                      Dátum: <strong>7.6.2015</strong><br>
+                      Začiatok: <strong>14:00</strong>
+                    </p>
+                    <br class="clearfix"/>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="templatemo-service-item" >
+                <div>
+                  <i class="fa fa-list fa-3x"></i>
+                  <span class="templatemo-service-item-header">PROGRAM</span>
+                </div>
+                  <p>
+                    Program Dňa rodiny začne svätou omšou v kostole sv. Cyrila a Metoda o 14:00...
+                  </p>
+                <div class="text-center">
+                  <a href="#templatemo-program" class="templatemo-btn-read-more btn btn-orange">ČÍTAJ VIAC</a>
+                </div>
+                <br class="clearfix"/>
+              </div>
+
+            </div>
+
+            <div class="col-md-4">
+                <div class="templatemo-service-item">
+                    <div>
+                        <i class="fa fa-street-view fa-3x"></i>
+                        <span class="templatemo-service-item-header">KDE ?</span>
+                    </div>
+                    <p>
+                      Miesto: <strong>Námestie sv. Cyrila a Metoda v Poprade</strong>
+                    </p>
+                    <div class="text-center">
+                      <a href="#templatemo-miesto" class="templatemo-btn-read-more btn btn-orange">ČÍTAJ VIAC</a>
+                    </div>
+                    <br class="clearfix"/>
+                </div>
+                <br class="clearfix"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="templatemo-service" id="templatemo-program">
+    <div class="container">
+        <div class="row">
+          <div class="templatemo-line-header">
+              <div class="text-center">
+                  <hr class="team_hr team_hr_left hr_gray"/><span>PROGRAM</span><hr class="team_hr team_hr_right hr_gray" />
+              </div>
+          </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="templatemo-service-item">
+              <div>
+                <i class="fa fa-list fa-3x"></i>
+                <span class="templatemo-service-item-header">Program na pódiu</span>
+              </div>
+              <ul>
+                <li><strong>14:00 - 15:00</strong> Sv. omša v kostole sv. Cyrila a Metoda</li>
+                <li><strong>15:00 - 15:15</strong> Otvorenie programu na pódiu pri kostole a úvodné príhovory</li>
+                <li><strong>15:15 - 15:50</strong> Vystúpenie ZUŠ: <br>1. blok: <i>Gitarový súbor</i><br>2. blok: <i>Čapóovci, Banasiewiczovci, Ľudová hudba</i></li>
+                <li><strong>15:55 - 16:10</strong> Divadielko Erko</li>
+                <li><strong>16:15 - 16:50</strong> Vystúpenie ZUŠ: <br>3. blok: <i>Sestry Vojtechové, Jurčíkovci, Pintekovci, Tanec</i><br>4. blok: <i>Gallovičovci a Šromekovci, Ľudová hudba</i></li>
+                <li><strong>16:55 - 17:10</strong> Krátka "diskotéka" pre deti</li>
+                <li><strong>17:15 - 17:40</strong> Tombola</li>
+                <li><strong>17:45 - 18:15</strong> Gospelová kapela <i>Cukor a Soľ</i></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="templatemo-service-item">
+              <div>
+                <i class="fa fa-list fa-3x"></i>
+                <span class="templatemo-service-item-header">Sprievodný program</span>
+              </div>
+              <ul>
+                <li>Skautské mestečko</li>
+                <li>Tvorivé dielne</li>
+                <li>Študentské stanovištia</li>
+                <li>Tombola</li>
+                <li>Občerstvenie a od 16:00 aj guláš</li>
+                <li>Trampolína</li>
+                <li>Požiarnícke auto</li>
+                <li>Nástenka s informáciami pre rodiny. Téma: Ochrana života, ponuka aktivít pre rodiny.</li>
+                <li>Predaj tričiek a balónov</li>
+                <li>Možnosť kúpiť si nejakú knižku z kníhkupectva <i>Aletea</i></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+{*<div class="templatemo-team" id="templatemo-about">
+    <div class="container">
+        <div class="row">
+            <div class="templatemo-line-header">
+                <div class="text-center">
+                    <hr class="team_hr team_hr_left"/><span>MEET OUR TEAM</span>
+                    <hr class="team_hr team_hr_right" />
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+            <ul class="row row_team">
+                <li class="col-lg-3 col-md-3 col-sm-6 ">
+                    <div class="text-center">
+                        <div class="member-thumb">
+                            <img src="{$basePath}/www/images/member1.jpg" class="img-responsive" alt="member 1" />
+                            <div class="thumb-overlay">
+                                <a href="#"><span class="social-icon-fb"></span></a>
+                                <a href="#"><span class="social-icon-twitter"></span></a>
+                                <a href="#"><span class="social-icon-linkedin"></span></a>
+                            </div>
+                        </div>
+                        <div class="team-inner">
+                            <p class="team-inner-header">TRACY</p>
+                            <p class="team-inner-subtext">Designer</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-lg-3 col-md-3 col-sm-6 ">
+                    <div class="text-center">
+                        <div class="member-thumb">
+                            <img src="{$basePath}/www/images/member2.jpg" class="img-responsive" alt="member 2" />
+                            <div class="thumb-overlay">
+                                <a href="#"><span class="social-icon-fb"></span></a>
+                                <a href="#"><span class="social-icon-twitter"></span></a>
+                                <a href="#"><span class="social-icon-linkedin"></span></a>
+                            </div>
+                        </div>
+                        <div class="team-inner">
+                            <p class="team-inner-header">MARY</p>
+                            <p class="team-inner-subtext">Developer</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-lg-3 col-md-3 col-sm-6 ">
+                    <div class="text-center">
+                        <div class="member-thumb">
+                            <img src="{$basePath}/www/images/member3.jpg" class="img-responsive" alt="member 3" />
+                            <div class="thumb-overlay">
+                                <a href="#"><span class="social-icon-fb"></span></a>
+                                <a href="#"><span class="social-icon-twitter"></span></a>
+                                <a href="#"><span class="social-icon-linkedin"></span></a>
+                            </div>
+                        </div>
+                        <div class="team-inner">
+                            <p class="team-inner-header">JULIA</p>
+                            <p class="team-inner-subtext">Director</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-lg-3 col-md-3 col-sm-6 ">
+                    <div class="text-center">
+                        <div class="member-thumb">
+                            <img src="{$basePath}/www/images/member4.jpg" class="img-responsive" alt="member 4" />
+                            <div class="thumb-overlay">
+                                <a href="#"><span class="social-icon-fb"></span></a>
+                                <a href="#"><span class="social-icon-twitter"></span></a>
+                                <a href="#"><span class="social-icon-linkedin"></span></a>
+                            </div>
+                        </div>
+                        <div class="team-inner">
+                            <p class="team-inner-header">LINDA</p>
+                            <p class="team-inner-subtext">Manager</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+    </div>
+</div><!-- /.templatemo-team -->*}
+
+{*<div id="templatemo-portfolio" >
+    <div class="container">
+        <div class="row">
+            <div class="templatemo-line-header" >
+                <div class="text-center">
+                    <hr class="team_hr team_hr_left hr_gray"/><span class="txt_darkgrey">OUR PORTFOLIO</span>
+                    <hr class="team_hr team_hr_right hr_gray" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="templatemo-gallery-category" style="font-size:16px; margin-top:80px;">
+                <div class="text-center">
+                    <a class="active" href=".gallery">All</a> / <a href=".gallery-design">Web Design </a>/ <a href=".gallery-graphic">Graphic</a> / <a href=".gallery-inspiration">Inspiration</a> / <a href=".gallery-creative">Creative</a>							
+                </div>
+            </div>
+        </div> <!-- /.row -->
+
+
+        <div class="clearfix"></div>
+        <div class="text-center">
+            <ul class="templatemo-project-gallery" >
+                <li class="col-lg-2 col-md-2 col-sm-2  gallery gallery-graphic" >
+                    <a class="colorbox" href="images/full-gallery-image-1.jpg" data-group="gallery-graphic">
+                        <div class="templatemo-project-box">
+
+                            <img src="{$basePath}/www/images/gallery-image-1.jpg" class="img-responsive" alt="gallery" />
+
+                            <div class="project-overlay">
+                                <h5>Graphic</h5>
+                                <hr />
+                                <h4>TEA POT</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="col-lg-2 col-md-2 col-sm-2  gallery gallery-creative" >
+                    <a class="colorbox" href="images/full-gallery-image-2.jpg" data-group="gallery-creative">
+                        <div class="templatemo-project-box">
+                            <img src="{$basePath}/www/images/gallery-image-2.jpg" class="img-responsive" alt="gallery" />
+                            <div class="project-overlay">
+                                <h5>Creative</h5>
+                                <hr />
+                                <h4>BREAKFAST</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="col-lg-2 col-md-2 col-sm-2  gallery gallery-inspiration" >
+                    <a class="colorbox" href="images/full-gallery-image-3.jpg" data-group="gallery-inspiration">
+                        <div class="templatemo-project-box">
+                            <img src="{$basePath}/www/images/gallery-image-3.jpg" class="img-responsive" alt="gallery" />
+                            <div class="project-overlay">
+                                <h5>Inspiration</h5>
+                                <hr />
+                                <h4>GREEN COLORS</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="col-lg-2 col-md-2 col-sm-2  gallery gallery-design" >
+                    <a class="colorbox" href="images/full-gallery-image-4.jpg" data-group="gallery-design">
+                        <div class="templatemo-project-box">
+                            <img src="{$basePath}/www/images/gallery-image-4.jpg" class="img-responsive" alt="gallery" />
+                            <div class="project-overlay">
+                                <h5>Web Design</h5>
+                                <hr />
+                                <h4>CAMERA</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="col-lg-2 col-md-2 col-sm-2  gallery gallery-inspiration" >
+                    <a class="colorbox" href="images/full-gallery-image-5.jpg" data-group="gallery-inspiration">
+                        <div class="templatemo-project-box">
+                            <img src="{$basePath}/www/images/gallery-image-5.jpg" class="img-responsive" alt="gallery" />
+                            <div class="project-overlay">
+                                <h5>Inspiration</h5>
+                                <hr />
+                                <h4>PLANT</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="col-lg-2 col-md-2 col-sm-2  gallery gallery-inspiration" >
+                    <a class="colorbox" href="images/full-gallery-image-6.jpg" data-group="gallery-inspiration">
+                        <div class="templatemo-project-box">
+                            <img src="{$basePath}/www/images/gallery-image-6.jpg" class="img-responsive" alt="gallery" />
+                            <div class="project-overlay">
+                                <h5>Inspiration</h5>
+                                <hr />
+                                <h4>CABLE TRAIN</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="col-lg-2 col-md-2 col-sm-2 gallery gallery-design" >
+                    <a class="colorbox" href="images/full-gallery-image-7.jpg" data-group="gallery-design">
+                        <div class="templatemo-project-box">
+                            <img src="{$basePath}/www/images/gallery-image-7.jpg" class="img-responsive" alt="gallery" />
+                            <div class="project-overlay">
+                                <h5>Web Design</h5>
+                                <hr />
+                                <h4>CITY</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="col-lg-2 col-md-2 col-sm-2 gallery gallery-creative" >
+                    <a class="colorbox" href="images/full-gallery-image-8.jpg" data-group="gallery-creative">
+                        <div class="templatemo-project-box">
+                            <img src="{$basePath}/www/images/gallery-image-8.jpg" class="img-responsive" alt="gallery" />
+                            <div class="project-overlay">
+                                <h5>Creative</h5>
+                                <hr />
+                                <h4>BIRDS</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="col-lg-2 col-md-2 col-sm-2 gallery gallery-graphic" >
+                    <a class="colorbox" href="images/full-gallery-image-9.jpg" data-group="gallery-graphic">
+                        <div class="templatemo-project-box">
+                            <img src="{$basePath}/www/images/gallery-image-9.jpg" class="img-responsive" alt="gallery" />
+                            <div class="project-overlay">
+                                <h5>Graphic</h5>
+                                <hr />
+                                <h4>NATURE</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="col-lg-2 col-md-2 col-sm-2 gallery gallery-inspiration" >
+                    <a class="colorbox" href="images/full-gallery-image-10.jpg" data-group="gallery-inspiration">
+                        <div class="templatemo-project-box">
+                            <img src="{$basePath}/www/images/gallery-image-10.jpg" class="img-responsive" alt="gallery" />
+                            <div class="project-overlay">
+                                <h5>Inspiration</h5>
+                                <hr />
+                                <h4>DOGGY</h4>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+            </ul><!-- /.gallery -->
+        </div>
+        <div class="clearfix"></div>
+        <div class="row text-center">
+            <a class="btn_loadmore btn btn-lg btn-orange" href="#" role="button">LOAD MORE</a>
+        </div>
+    </div><!-- /.container -->
+</div> <!-- /.templatemo-portfolio -->*}
+
+<div id="templatemo-blog">
+    <div class="container">
+        <div class="row">
+          <div class="templatemo-line-header" style="margin-top: 0px;" >
+            <div class="text-center">
+              <hr class="team_hr team_hr_left hr_gray"/><span class="span_blog txt_darkgrey">ĎALŠIE INFORMÁCIE</span>
+              <hr class="team_hr team_hr_right hr_gray" />
+            </div>
+          </div>
+          <br class="clearfix"/>
+        </div>
+
+        <div class="blog_box">
+            <div class="col-sm-5 col-md-6 blog_post">
+              <ul class="list-inline">
+                <li class="col-md-4">
+                  <a href="http://denrodiny.sk/" title="denrodiny.sk">
+                    <img class="img-responsive" src="{$basePath}/www/images/blog-image-1.jpg" alt="denrodiny.sk" />
+                  </a>
+                </li>
+                <li  class="col-md-8">
+                  <div class="pull-left">
+                      <span class="blog_header">WEB Dňa rodiny</span><br/>
+                      <span>11.5.2015</span>
+                  </div>
+                  <div class="clearfix"> </div>
+                  <p class="blog_text">
+                    Pripájeme tu aj odkaz na oficiálnu webovú stránku celoslovenského Dňa rodiny 2015.<br>
+                    Nájdete ju na 
+                    <a href="http://denrodiny.sk/" title="denrodiny.sk" class="link_orange" target="_blank">
+                      <strong class="txt_orange">denrodiny.sk</strong>
+                    </a>
+                  </p>
+                </li>
+              </ul>
+            </div> <!-- /.blog_post 1 -->
+
+            <div class="col-sm-5 col-md-6 blog_post">
+              <ul class="list-inline">
+                <li class="col-md-4"><a href="http://sk.radiovaticana.va/news/2015/05/13/gener%C3%A1lna_audiencia_k%C4%BE%C3%BA%C4%8Dov%C3%A9_slov%C3%A1_dobr%C3%A9ho_rodinn%C3%A9ho_%C5%BEivota/1143762" title="Vatikánsky rozhlas: Katechéza pápeža Františka">
+                  <img class="img-responsive" src="{$basePath}/www/images/blog-image-2.jpg" alt="Katechézy pápeža Františka" /></a>
+                </li>
+                <li class="col-md-8">
+                  <div class="pull-left">
+                    <span class="blog_header">KATECHÉZA PÁPEŽA FRANTIŠKA</span><br/>
+                    <span>15.5.2015</span>
+                  </div>
+                  <div class="clearfix"> </div>
+                  <p class="blog_text">
+                    V stredu 13.5.2015 sa Námestie sv. Petra opäť zaplnilo pútnikmi z celého sveta. Svätý Otec pokračoval v sérii katechéz o rodine, tentokrát konkrétne o rodinnom živote, 
+                    pričom sa zameral na tri kľúčové slová, ktoré v rodine nesmú chýbať: <strong>«môžem?»</strong>, <strong>«ďakujem»</strong> a <strong>«prepáč»</strong>. 
+                    Tieto tri slovká „otvárajú cestu pre dobrý život v rodine, pre život v pokoji“, povedal Svätý Otec. „Sú to jednoduché slová, no nie až také jednoduché pri ich uskutočňovaní! 
+                    Ukrývajú v sebe mohutnú silu: silu na ochranu domu aj cez tisícoraké ťažkosti a skúšky; zatiaľ čo ich neprítomnosť pozvoľna zapríčiní trhliny, ktoré môžu spôsobiť, 
+                    že sa dokonca aj zrúti.“  
+                  </p>
+                  <p class="blog_text">
+                    Celú katechézu nájdete na stránke:<br>
+                    <a href="http://sk.radiovaticana.va/news/2015/05/13/gener%C3%A1lna_audiencia_k%C4%BE%C3%BA%C4%8Dov%C3%A9_slov%C3%A1_dobr%C3%A9ho_rodinn%C3%A9ho_%C5%BEivota/1143762" title="Vatikánsky rozhlas: Katechéza pápeža Františka" class="link_orange" target="_blank">
+                      <strong class="txt_orange">Tri kľúčové slová dobrého rodinného života</strong>
+                    </a>
+                  </p>
+                </li>
+              </ul>	
+            </div><!-- /.blog_post 2 -->
+
+           {* <div class="templatemo_clear"></div>*}
+
+           {* <div class="col-sm-5 col-md-6 blog_post">
+                <ul class="list-inline">
+                    <li class="col-md-4"><a href="#">
+                        <img class="img-responsive" src="{$basePath}/www/images/blog-image-2.jpg" alt="gallery 3" /></a>
+                    </li>
+                    <li class="col-md-8">
+                        <div class="pull-left">
+                            <span class="blog_header">WEB DEVELOPMENT</span><br/>
+                            <span>Posted by : <a class="link_orange" href="#"><span class="txt_orange">Julia</span></a></span>
+                        </div>
+                        <div class="pull-right">
+                            <a class="btn btn-orange" href="#" role="button">12 January 2084</a>
+                        </div>
+                        <div class="clearfix"> </div>
+                        <p class="blog_text">
+                                Fusce molestie tellus risus, id commodo turpis convallis id. Morbi mattis sapien sapien, vitae lacinia ante interdum sit amet. Praesent eget varius diam, ac tempor est. Mauris at scelerisque magna [...]
+                        </p>
+                    </li>
+                </ul>	
+            </div><!-- /.blog_post 3 -->*}
+
+            {*<div class="col-sm-5 col-md-6 blog_post">
+                <ul class="list-inline">
+                    <li class="col-md-4">
+                        <a href="#">
+                            <img class="img-responsive" src="{$basePath}/www/images/blog-image-1.jpg"  alt="gallery 4" />
+                        </a>
+                    </li>
+                    <li class="col-md-8">
+                        <div class="pull-left">
+                            <span class="blog_header">NEW FLUID LAYOUT</span><br/>
+                            <span>Posted by : <a class="link_orange" href="#"><span class="txt_orange">Linda</span></a></span>
+                        </div>
+                        <div class="pull-right">
+                            <a class="btn btn-orange" href="#" role="button">10 January 2084</a>
+                        </div>
+                        <div class="clearfix"> </div>
+                        <p class="blog_text">
+                            In venenatis sodales purus a cursus. Ut consectetur, libero ac elementum tristique, enim ante aliquet mauris, scelerisque congue magna neque ac purus. Aliquam facilisis volutpat odio [...]
+                        </p>
+                    </li>
+                </ul>
+            </div> <!-- /.blog_post 4 -->*}
+
+        </div>
+    </div>
+</div>
+
+<div class="templatemo-service" id="templatemo-miesto">
+    <div class="container">
+        <div class="row">
+            <div class="templatemo-line-header head_contact">
+              <div class="text-center">
+                <hr class="team_hr team_hr_left hr_gray"/><span class="txt_darkgrey">MIESTO KONANIA</span>
+                <hr class="team_hr team_hr_right hr_gray"/>
+              </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="templatemo-contact-map" id="map-canvas">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2615.1841024809332!2d20.2966338!3d49.045123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473e3a9a45c5a51d%3A0x6272dd4823dfd03e!2sN%C3%A1mestie+sv.+Cyrila+a+sv.+Metoda%2C+058+01+Poprad!5e0!3m2!1ssk!2ssk!4v1430293439767" width="600" height="450" frameborder="0" style="border:0"></iframe>
+                </div>  
+                <div class="clearfix"></div>
+                <i>Nájdete nás v Poprade na <span class="txt_orange">námestí sv. Cyrila a Metoda</span> na sídlisku Juh.</i>
+            </div>
+            <div class="col-md-4 contact_right">
+              <img src="{$basePath}/www/images/n2209200601.jpg" class="img-responsive" alt="Kostol sv. Cyrila a Metoda" />
+                {*<p>Lorem ipsum dolor sit amet, consectetu adipiscing elit pendisse as a molesti.</p>
+                <p><img src="{$basePath}/www/images/location.png" alt="icon 1" /> 123 Dagon Studio, Yakin Street, Digital Estate</p>
+                <p><img src="{$basePath}/www/images/phone1.png"  alt="icon 2" /> 010-020-0340</p>
+                <p><img src="{$basePath}/www/images/globe.png" alt="icon 3" /><a class="link_orange" href="#"><span class="txt_orange">www.company.com</span></a></p>
+                <form class="form-horizontal" action="#">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Name..." maxlength="40" />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email..." maxlength="40" />
+                    </div>
+                    <div class="form-group">
+                        <textarea  class="form-control" style="height: 130px;" placeholder="Write down your message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-orange pull-right">SEND</button>
+                </form>*}
+              
+            </div>
+            
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /#templatemo-contact -->
+
+<div class="templatemo-tweets">
+  <div class="container">
+    <div class="row" style="margin-top:20px;">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-1">
+              <img src="{$basePath}/www/images/quote.png" alt="icon" />
+      </div>
+      <div class="col-md-7 tweet_txt" >
+        <span>Zvolené motto: <strong>“Aby deti otca mali, aby mali mamu… príď to povedať nahlas!”</strong> deklaruje, 
+          že podujatie je vyjadrením podpory a oslavou prirodzenej rodiny založenej na manželstve jedného muža a jednej ženy, ktorí s láskou prijímajú deti ako dar.</span>
+        {*<br/>
+        <span class="twitter_user">Moe Moe, Yangon</span>*}
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</div>
+
+<div class="templatemo-partners" id="templatemo-partnery">
+    <div class="container">
+        <div class="row">
+            <div class="templatemo-line-header" >
+              <div class="text-center">
+                <hr class="team_hr team_hr_left hr_gray"/><span class="txt_darkgrey">PARTNERI PODUJATIA</span>
+                <hr class="team_hr team_hr_right hr_gray" />
+              </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="text-center">
+              <div style="margin-top:60px;">
+                <ul class="list-inline">
+                  <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                    <a href="http://www.scspp.sk" title="Cirkevná spojená škola Poprade" target="_blank">
+                      <img src="{$basePath}/www/images/scspp-logo.png" class="img-responsive" alt="Cirkevná spojená škola Poprade" />
+                    </a>
+                  </li>
+                  <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                    <a href="http://www.rkcpoprad.sk" title="Rímskokatolícka cirkev - Franosť Poprad" target="_blank">
+                      <img src="{$basePath}/www/images/erb-i.png" class="img-responsive" alt="Rímskokatolícka cirkev - Franosť Poprad" />
+                    </a>
+                  </li>
+                  <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                    <a href="http://www.echo-msz.eu" title="Spevácky zbor ECHO Poprad" target="_blank">
+                      <img src="{$basePath}/www/images/echo-logo.png" class="img-responsive" alt="Spevácky zbor ECHO Poprad" />
+                    </a>
+                  </li>
+                  <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                    <a href="http://fki.sk/" title="Fórum Kresťanských Inštitúcií" target="_blank">
+                      <img src="{$basePath}/www/images/FKI-logo.png" class="img-responsive" alt="Fórum Kresťanských Inštitúcií" />
+                    </a>
+                  </li>
+                  <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                    <a href="http://www.poprad.sk/" title="Mesto Poprad" target="_blank">
+                      <img src="{$basePath}/www/images/poprad-logo.jpg" class="img-responsive" alt="Mesto Poprad" />
+                    </a>
+                  </li>
+                  <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                    <a href="http://skauting.sk/skauti/kontakty/skautske-zbory/?okr=pp" title="Skauti - 78. zbor Tatranskí orli Poprad" target="_blank">
+                      <img src="{$basePath}/www/images/skauting.png" class="img-responsive" alt="Skauti - 78. zbor Tatranskí orli Poprad" />
+                    </a>
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="templatemo-footer" >
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <div class="footer_container">
+                    {*<ul class="list-inline">
+                        <li>
+                            <a href="#">
+                                <span class="social-icon-fb"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="social-icon-rss"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="social-icon-twitter"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="social-icon-linkedin"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="social-icon-dribbble"></span>
+                            </a>
+                        </li>
+                    </ul>*}
+                    <div class="height30"></div>
+                    <a class="btn btn-lg btn-orange btn-back-to-top" href="#" role="button">Na začiatok stránky</a>
+                    <div class="height30"></div>
+                </div>
+                <div class="footer_bottom_content">
+                  Copyright © 2015 <a href="http://www.echo-msz.eu" title="Spevácky zbor ECHO Poprad" target="_blank">www.echo-msz.eu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

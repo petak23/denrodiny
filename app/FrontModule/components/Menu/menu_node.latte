@@ -1,0 +1,28 @@
+{* Cast sablony pre zobrazenie jednej vetvy stromu menu.
+    Potrebne premenne:
+      $node - vetva stromu
+      $path
+      $hideName
+      $showAll
+      $level
+      $nastav
+      $akoLi
+      $poradie_podclankov
+*}
+{if $node}
+	{if !isset($hideName) || !$hideName}
+		{include 'menu_link.latte' node => $node, nastav=>$nastav, akoLi=>$akoLi}
+ 	{else}
+		{var $hideName = false}
+	{/if}
+	{if $node->nodes && ($showAll || in_array($node, $path) || $node->isRootNode)}
+    <ul class="level-{$level}">
+      {var $level = $level + 1}
+      {var $n = $node->poradie_podclankov ? array_reverse($node->nodes) : $node->nodes}
+      {foreach $n as $subNode}
+        {include 'menu_node.latte', node=>$subNode, path=>$path, hideName=>$hideName, showAll=>$showAll, level=>$level, nastav=>$nastav, akoLi=>$akoLi}
+      {/foreach}
+      {var $level = $level - 1}
+    </ul>
+	{/if}
+{/if}

@@ -1,0 +1,21 @@
+<div n:snippet="ProduktyZoznam" class="produkt-nahlad">
+  <div>
+    <a href="{plink Produkt:add $id_hlavne_menu}" title="Pridaj produkt">Pridaj produkt</a>
+  </div>
+  {if count($produkty)}
+    <article n:inner-foreach="$produkty as $pr">
+      {var $v = $pr->produkt_lang}
+      <div class="produkt-nahlad">
+        <div class="produkt-image-small">
+          <a href="#" titile="{$v->nazov}">
+            <img src="{$basePath}/www/files/produkty/thumbs/{$v->spec_nazov}.jpg" height="70" alt="" border="0" />
+          </a>
+        </div>
+        <ul class="produkt-text-small">
+          <li><h4><a href="{plink Produkt:default $v->id, $id_hlavne_menu}" titile="{$v->nazov}">{$v->nazov|upper}</a></h4></li>
+          <li><a href="{plink Produkt:edit $v->id, $id_hlavne_menu}" title="Editácia produktu">Editácia produktu</a></li>
+        </ul>
+      </div>
+    </article>
+  {/if}
+</div>

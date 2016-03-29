@@ -1,0 +1,55 @@
+{* Sablona pre vypis uzivatelov
+ *
+ * Modul: ADMIN
+ *
+ * Posledna zmena(last change): 25.11.2015
+ * @copyright  Copyright (c) 2012 - 2015 Ing. Peter VOJTECH ml.
+ * @license
+ * @link       http://petak23.echo-msz.eu
+ *
+ * @param string   $h2 hlavny nadpis
+ * @param Nette\Database\Table\Selection  $clanovia  uzivatelia z DB
+ * @param array    $poc_pr_udaje   udaje o max a sum prihláseni
+ * @param array    $user_view_fields  udaje o viditelnosti poloziek
+*}
+{block content}
+<h2 n:block="title">{$h2}</h2>
+
+<div class="col-xs-12 col-md-12">
+  <a n:if="$user->isInRole('admin')" n:href="User:add"  title="Pridanie nového užívateľa" class="button-right edit-link">
+    <i class="fa fa-user-plus fa-2x"></i>Pridanie nového užívateľa</a>
+</div>
+<div class="col-xs-12 col-md-12 table-responsive">
+  <table n:inner-foreach="$clenovia as $clen" class="table table-bordered table-striped table-hover table-clenovia">
+    <tr>
+      <td class="avatar center" n:if="$user_view_fields['avatar']"><img src="{$basePath}/www/{$clen->avatar_25}" alt="avatar" n:if="is_file('www/'.$clen->avatar_25)"></td>
+      <td class="center">{$clen->id}</td>
+      <td class="{if $clen->users->activated == 0}notActivated" title="Neaktivovaný člen{/if}" >
+        {if $clen->id_registracia <= $user->getIdentity()->id_registracia}
+          <a n:href="User:edit $clen->id" title="{$clen->priezvisko|upper}"> {$clen->meno} {$clen->priezvisko|upper}</a>
+        {else}
+          {$clen->meno} {$clen->priezvisko|upper}
+        {/if}
+        <br /><i>{$clen->users->email}</i>
+      </td>
+      <td>
+        <span class="uroven-registracie uroven-registracie-{$clen->id_registracia}">{$clen->id_registracia} - {$clen->registracia->nazov} ({$clen->registracia->role})</span>
+        <br>{$clen->users->username}
+      </td>
+      <td n:if="$user_view_fields['rok']">{$clen->rok}</td>
+      <td class="pocet_pr">
+        {var $sirka = "width: ".((($clen->pocet_pr*180)/$poc_pr_udaje["max"])+10)."px;"}
+        <div class="{$clen->pocet_pr|clenclass:$poc_pr_udaje["max"]}" style="{$sirka|noescape}">
+          <span>{$clen->pocet_pr}</span>
+        </div>
+      </td>
+      <td>
+        <small>{$clen->prihlas_teraz|date:'%d.%m.%Y %H:%M:%S'}<br />{$clen->prihlas_predtym|date:'%d.%m.%Y %H:%M:%S'}</small>
+      </td>
+      <td class="editacne center" n:if="$user->isInRole('admin')">
+        <a href="{link confirmForm:confirmDelete! id => $clen->id, nazov => $clen->meno.' '.$clen->priezvisko, druh =>'admin', zdroj_na_zmazanie => 'užívateľa'}"
+          n:if="$clen->id_registracia <= $user->getIdentity()->id_registracia" title="Vymazanie člena {$clen->priezvisko}" class="vymaz">V</a>
+      </td>
+    </tr>
+  </table>
+</div>

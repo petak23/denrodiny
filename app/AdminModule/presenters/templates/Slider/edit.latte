@@ -1,0 +1,7 @@
+{var $robots = noindex}
+
+{block #content}
+	<h2 n:block=title>Administrácia slider-u</h2>
+  <div class="alert alert-danger" role="alert"><strong>Pozor!!!</strong> Odporúčaný rozmer obrázku je: <strong>{$slider_i['x']}x{$slider_i['y']}</strong> alebo násobky tejto veľkosti. Inak môže dôjsť k deformácii alebo orezaniu obrázku pri ukladaní!</div>
+  <p>Súčasný obrázok: {!$sucasny}</p>
+  {control sliderEditForm}

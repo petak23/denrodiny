@@ -1,0 +1,62 @@
+{define #link_in}
+  <div n:if="strlen($nastav['avatar']) && isset($node->avatar) && is_file('www/'.$nastav['avatar'].$node->avatar)" class="avatar-img">
+    <img src="{$basePath}/www/{$nastav['avatar']}{$node->avatar}" alt="Titulný obrázok">
+  </div>
+  {$node->name}
+  <small n:if="isset($node->tooltip)">{$node->tooltip}</small>
+{/define}
+
+{define #link}
+{var $plati = isset($node->datum_platnosti) && $node->datum_platnosti->format('Y-m-d') < date('Y-m-d') ? TRUE : FALSE}
+<li class="pol-li-{$akoLi}" n:tag-if="isset($akoLi) && $akoLi">
+  <div class="menu-link-in">
+    {if $node->link}
+      <a href="{$node->link}" n:class="$node->itemClass" title="{$node->name}">
+        {include #link_in node => $node}
+      </a>
+    {else}
+      <span n:class="$node->itemClass">
+        {include #link_in node => $node}
+      </span>
+    {/if}
+    <p n:if="$nastav['anotacia'] && isset($node->anotacia)">
+      {$node->anotacia}
+      <a n:if="$node->link" href="{$node->link}" class="viac" title="{$node->name}">»»»</a>
+    </p>
+  </div>
+  <a href="{$node->link}" class="neplati" n:if="$plati" title="{$node->name}">
+    <h4>Položka už neplatí</h4>
+    <p><strong>Platila do {$node->datum_platnosti->format('d.m.Y')}</strong></p>
+  </a>
+</li>
+{/define}
+
+{define #node}
+{if $node}
+	{if !isset($hideName) || !$hideName }
+		{include #link node => $node, edituj => TRUE}
+	{else}
+		{var $hideName = false}
+	{/if}
+	{if $node->nodes && ($showAll || in_array($node, $path) || $node->isRootNode)}
+    <ul>
+      {var $level = $level + 1}
+      {var $n = $node->poradie_podclankov ? array_reverse($node->nodes) : $node->nodes}
+      {foreach $n as $subNode}
+        <li>
+          {include #node, node => $subNode}
+        </li>
+      {/foreach}
+      {var $level = $level - 1}    
+    </ul>
+	{/if}
+{/if}
+{/define}
+
+
+{var $ukaz = isset($startNode) && isset($startNode->nodes) && count($startNode->nodes)}
+{var $level=1}
+<div n:tag-if="$nastav['divClass'] && $ukaz" class="{$nastav['divClass']}">
+  <h4 n:if="$nastav['nadpis'] && $ukaz">{$nastav['nadpis']}</h4>
+  {include #node node => $startNode, hideName => true, showSubnodes => true}
+</div>

@@ -1,0 +1,38 @@
+{* Sablona pre vypis clanku
+ *
+ * Modul: ADMIN
+ *
+ * Posledna zmena(last change): 23.02.2016
+ * @copyright  Copyright (c) 2012 - 2016 Ing. Peter VOJTECH ml.
+ * @license
+ * @link       http://petak23.echo-msz.eu
+ *
+ * @param Nette\Database\Table\Selection  $cl_texts Jazykové mutácie článku
+ * @param boolean $zobraz_anotaciu Povolenie zobrazenia anotacie
+*}
+{define #vypis_clanku}
+<div class="panel panel-default">
+  <div class="panel-heading" n:if="$zobraz_anotaciu && isset($anotacia) && strlen($anotacia)">
+    <h4>Anotácia:</h4>
+    {$anotacia}
+  </div>
+  <div n:ifset="$text" class="panel-body">
+    <h4>Text článku:</h4>
+    {$text|noescape|obr_v_txt}
+  </div>
+</div>
+{/define}
+
+<div n:snippet="ZobrazClanok">
+  <ul n:if="count($cl_texts) > 1" class="nav nav-tabs" role="tablist" n:inner-foreach="$cl_texts as $c" id="clanokTabs">
+    <li role="presentation" {first}class="active"{/first}>
+      <a href="#tabs-{$iterator->counter}" aria-controls="tabs-{$iterator->counter}" role="tab" data-toggle="tab">{$c->lang->skratka}: {$c->nazov}</a>
+    </li>
+  </ul>
+
+  <div n:tag-if="count($cl_texts) > 1" class="tab-content" n:inner-foreach="$cl_texts as $c"> 
+    <div n:tag-if="count($cl_texts) > 1" role="tabpanel" class="tab-pane{first} active{/first}" id="tabs-{$iterator->counter}">
+      {include #vypis_clanku anotacia => $c->clanok_lang->anotacia, text => $c->clanok_lang->text}
+    </div>
+  </div>
+</div>

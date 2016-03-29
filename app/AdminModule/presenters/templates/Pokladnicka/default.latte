@@ -1,0 +1,36 @@
+{block content}
+<h2 n:block="title, nadpis_h1">{$h2}</h2>
+<h4>{$h4}</h4>
+{control pokladnickaForm}
+<table id="vyp_adm">
+  <tr><th>Suma</th><th>Účel</th><th>Dátum</th></tr>
+<?php $rok = 0; $rok_d = 0; $celkom = 0; ?>
+{foreach $pokladnicka as $polozka}
+  <?php $rok_n = StrFTime("%Y", StrToTime($polozka->created)); ?>
+  {if !$iterator->first}
+    {if $rok_d != $rok_n}
+  <tr class="suma"><th colspan="2">Suma za rok {$rok_d}</th><th class="right">{$rok|number:2:',':' '}</th></tr>
+  <?php $rok = 0; ?>
+    {/if}
+  {/if}
+  <?php $rok_d = $rok_n ?>
+  <tr n:class="$iterator->isOdd() ? r1 : r2">
+    <td>{$polozka->created|date:'j.n.Y'}</td>
+    <td><a n:href="Pokladnicka:edit $polozka->id"
+       n:if="$user->isAllowed($control->name, 'edit')"	title="Editácia {$polozka->ucel}">{$polozka->ucel}</a>
+      <a href="{link confirmForm:confirmDelete! id => $polozka->id, nazov => $polozka->ucel}"
+       n:if="$user->isAllowed($control->name, 'del')" title="Vymazanie {$polozka->ucel}" class="vymaz">V</a>
+    </td>
+    <td class="right {if $polozka->vklad>=0}vklad{else}vyber{/if}">
+    <?php $hodnota = $polozka->suma*$polozka->vklad;
+    $rok = $rok + $hodnota;
+    $celkom = $celkom + $hodnota?>
+    {$hodnota|number:2:',':' '}</td>
+  </tr>
+  {if $iterator->last}
+    <tr class="suma"><th colspan="2">Suma za rok {$rok_d}</th><th>{$rok|number:2:',':' '}</th></tr>
+    <tr class="celkom"><th colspan="2">Aktuálny stav pokladničky</th><th>{$celkom|number:2:',':' '}</th></tr>
+  {/if}
+{/foreach}
+</table>
+{/block}

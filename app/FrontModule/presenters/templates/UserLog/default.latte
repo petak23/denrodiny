@@ -1,0 +1,20 @@
+{var $robots = noindex}
+{block content}
+
+<article class="article-main row">
+<!--[if lt IE 9]><div id="article row"><![endif]-->
+  <div class="col-md-8 col-md-offset-2 bg-info">
+    {control confirmForm}
+    <h2 n:inner-block="title">{$h2}</h2>
+    {control userEditForm}
+    <a n:href="UserLog:mailChange" title="{$default_email_change}" class="btn btn-info" role="button">
+      <i class="fa fa-edit"></i> {$default_email_change}
+    </a>
+    <a n:href="UserLog:passwordChange" title="{$pass_change}" class="btn btn-warning" role="button">
+      <i class="fa fa-key"></i> {$pass_change}
+    </a>
+    <a n:if="$clen->id_users >= 1 && $user_view_fields['delete']" href="{link confirmForm:confirmDelete! id => $clen->id_users, nazov => $clen->priezvisko, zdroj_na_zmazanie => $zdroj_na_zmazanie}" title="{$default_delete} {$clen->priezvisko}" class="btn btn-danger" role="button">
+      <i class="fa fa-remove"></i> {$default_delete}{$clen->meno} {$clen->priezvisko|upper}
+    </a>
+  </div>
+</article>

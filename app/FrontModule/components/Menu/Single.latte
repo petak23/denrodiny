@@ -1,0 +1,6 @@
+{if isset($startNode) && count($startNode->nodes)}
+	<h4 n:if="$nastav['nadpis']">{$nastav['nadpis']}</h4>
+  <ul class="{if $nastav['divClass']}{$nastav['divClass']}{/if}" n:inner-foreach="$startNode->nodes as $subNode">
+    {include 'menu_link.latte' node => $subNode, akoLi => $iterator->counter, nastav=>$nastav}
+  </ul>
+{/if}

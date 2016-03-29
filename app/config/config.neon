@@ -1,0 +1,90 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+parameters:
+  homepage_redirect: FALSE #Presmerovanie na hlavnej stranke Cesta|FALSE
+  add_uroven0: FALSE # Globalne povolenie pre pridavanie do urovne 0 pre spravcu. TRUE|FALSE
+  send_e_mail_news: FALSE # Globalne povolenie posielania info mailov v pripade pridania polozky TRUE|FALSE
+  omrvinky_enabled: FALSE # Globalne povolenie zobrazenia omrviniek TRUE|FALSE
+  aktualny_projekt_enabled: FALSE # Globalne povolenie nastavovania aktualneho projektu TRUE|FALSE
+  slider:       #Nastavenie slider-u
+    x: 515   #Rozmery slider-u
+    y: 384
+    varianta: 4 #0-nahodne nacitany obrazok, 1-meniace sa obrazky, 2-carousel, 3-scspp, 4-denrodiny
+    odkaz: FALSE # Povolenie zobrazenia obrazkov slider-u ako odkazu TRUE|FALSE
+  hlavne_menu_obr_ikonky: FALSE # Povolenie obrazovych ikoniek v hl.menu. TRUE|FALSE
+  user_panel: #Nastavenie panelu uzivatela
+    view_avatar: FALSE # Zobrazenie avataru v panely uzivatela. TRUE|FALSE
+    admin_link: 3 # Sposob zobrazenia odkazu na administraciu. 1 - Len obrázok; 2 - Len text; 3 - Aj obrazok aj text.
+#   view_log_in_link_in_header - Sposob zobrazenia prihlasovacieho linku. A to:
+#    -1 = len ako odkaz vo footer-y
+#     0 = len ako kruzok  
+#     1 = zobrazi sa text
+#     2 = zobrazi sa ikonka
+#     3 = zobrazi sa ikonka aj text
+    view_log_in_link_in_header: -1
+
+# article_avatar_view_in - Zobrazenie avataru clanku. Cislo je sucet hodnot a to: 
+#			1 = v hl. menu
+# 		2 = v titulke clanku
+  article_avatar_view_in: 2 
+  produkt_path: files/produkty # Adresar pre subory prilohy v adresary www
+  prilohy_images: #Nastavenie rozmerov obrazku ako prilohy clanku po nahrati na server
+    x: 800        #Zakladny rozmer
+    y: 600
+    tx: 150       #Rozmer nahladu
+    ty: 112
+  user_view_fields: #Nastavuje viditelne(volitelne) polozky uzivatela
+    rok: FALSE       #Zobrazenie roku narodenia
+    telefon: FALSE   #Zobrazenie telefonu
+    pohl: FALSE      #Zobrazenie pohlavia
+    avatar: FALSE    #Zobrazenie avataru
+    poznamka: FALSE  #Zobrazenie poznamky
+    delete: FALSE    #Zobrazenie moznosti zmazat profil
+  oznam: #Nastavuje viditelne(volitelne) polozky oznamu(aktuality)
+    datum_zadania: TRUE      #Zobrazenie datumu zadania
+    datum_platnosti: TRUE    #Zobrazenie datumu platnosti
+  clanky:
+    zobraz_anotaciu: FALSE   #Zobrazenie anotacie vseobecne
+    opravnenia:
+      0: Žiadne
+      1: Pridávanie podčlánkov
+      2: Editácia položky
+      3: Pridávanie podčlánkov a editácia položky
+
+php:
+  date.timezone: Europe/Prague
+	# zlib.output_compression: yes
+
+
+nette:
+  application:
+    errorPresenter: Front:Error
+    mapping:
+      *: App\*Module\Presenters\*Presenter
+
+  session:
+    autoStart: true
+    expiration: 30 days
+  
+  debugger:
+    email: petak23@gmail.com
+
+includes:
+  - services.neon
+  - css_js.neon
+  - komponenty.neon
+  - database.neon
+
+services:
+  hlavnemenu: 
+    class: DbTable\Hlavne_menu
+    autowired: no
+  clanoks: 
+    class: DbTable\Clanok
+    autowired: no
+#  - App\RouterFactory 
+#	router: @App\RouterFactory::createRouter

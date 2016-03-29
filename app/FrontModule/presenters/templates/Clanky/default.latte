@@ -1,0 +1,35 @@
+{block title}{$h2}{/block}
+{block content} 
+  {var $uroven_aside = $uroven > 2 ? $uroven - 1 : 2}
+  <aside class="article-podclanky" n:if="$clanok_view">
+    {control menu templateType=>'tree', level=>$uroven_aside, avatar => $avatar_path, anotacia => TRUE, nadpis => $viac_info, divClass => FALSE}
+  </aside>
+  <article class="article-main">
+  <!--[if lt IE 9]><div id="article"><![endif]-->
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        {if $clanok_view}
+          {control ukazTentoClanok}
+        {else}
+          {control menu templateType=>'single', cast => 1, level => $uroven, avatar => $avatar_path, article_avatar_view_in => TRUE, anotacia => TRUE, nadpis => $viac_info, divClass => 'podclanky'}
+        {/if}  
+      </div>
+    </div>
+		{control prilohy}
+    <div class="row" n:if="(isset($komponenty) && count($komponenty)) || $komentare_povolene">
+      <div class="col-xs-12 col-md-12">
+        <section id="nahlady" n:if="isset($komponenty) && count($komponenty)">
+          {foreach $komponenty as $komp}
+            {ifset $komp["parametre"]}
+              {var $nazov_komp = $komp['nazov'].'-'.$iterator->counter}
+              {control $nazov_komp, $komp["parametre"]}
+            {else}
+              {control $komp["nazov"]}
+            {/ifset}
+          {/foreach}
+        </section>
+        {if $komentare_povolene}{control komentar-$komentare_povolene}{/if}
+      </div>
+    </div>
+  <!--[if lt IE 9]></div><![endif]-->
+  </article>
