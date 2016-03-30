@@ -23,8 +23,8 @@ parameters:
       css: []
       js: []
     Front:
-      css: ['css/templatemo_style.css']
-      js: ['/js/stickUp.min.js', 'js/templatemo_script.js']
+      css: ['css/front/templatemo_style.css']
+      js: ['js/stickUp.min.js', 'js/templatemo_script.js']
     Admin:
       css: ['css/admin/cupertino/jquery-ui-1.10.4.custom.css', 'css/admin/formulare.css', 'css/admin/grid.css', 'css/admin/lavy.css', 'css/admin/stred_admin.css', 'css/admin/main_admin.css']
       js: ['js/jquery-ui.min.js','js/jquery.ui.datepicker-sk.js', 'js/grid.js', 'js/pomocne_admin.js']

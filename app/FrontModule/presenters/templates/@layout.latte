@@ -4,7 +4,7 @@
  *
  *	Modul: FRONT
  *
- * Posledna zmena(last change): 15.03.2016
+ * Posledna zmena(last change): 30.03.2016
  * @copyright  Copyright (c) 2012 - 2016 Ing. Peter VOJTECH ml.
  * @license
  * @link       http://petak23.echo-msz.eu
@@ -35,27 +35,54 @@
 <body>
 	<script> document.body.className+=' js' </script>
   <div class="container">
-    {*ifset #intro}
-      {include #intro}
-    {else*}
     <header id="header" >{* ----- ZACIATOK header ------ *}
     <!--[if lt IE 9]><div id="header"><![endif]-->
+      <div class="templatemo-top-menu" id="home">
+        <div class="container">
+          <!-- Static navbar -->
+          <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <h1>
+                  <a n:href="Homepage" class="navbar-brand" title="{$udaje['titulka']}">
+                    <img src="{$basePath}/www/images/small_logo1.jpg" alt="{$udaje['titulka']}" title="{$udaje['titulka']}" />
+                  </a>
+                </h1>
+              </div>
+              <div class="navbar-collapse collapse" id="templatemo-nav-bar">
+                {control menu templateType=>'fixed', templateFile=>'Drodiny_Fixed_Main', cast=>1, article_avatar_view_in =>0, avatar=>FALSE, level=>1}
+                {*<ul class="nav navbar-nav navbar-right" style="margin-top: 40px;">
+                  <li class="active"><a href="#templatemo-home" class="btn-back-to-top">DOMOV</a></li>
+                    <li><a href="#templatemo-info" class="nav">ZÁKLADNÉ INFORMÁCIE</a></li>
+                    <li><a href="#templatemo-program" class="nav">PROGRAM</a></li>
+                    <li><a href="#templatemo-blog" class="nav">ĎALŠIE INFORMÁCIE</a></li>
+                    <li><a href="#templatemo-miesto" class="nav">MIESTO KONANIA</a></li>
+                    <li><a href="#templatemo-partnery" class="nav">PARTNERI PODUJATIA</a></li>
+                </ul>*}
+              </div><!--/.nav-collapse -->*}
+            </div><!--/.container-fluid -->
+          </div><!--/.navbar -->
+        </div> <!-- /container -->
+      </div>
       <div id="hornalista">
-        <h1><a n:href="Homepage">{$udaje['titulka']}</a>
+        {*<h1><a n:href="Homepage">{$udaje['titulka']}</a>
           <br />{ifset $udaje['nazov']}{$udaje['nazov']|striptags}{/ifset}
           <small n:ifset="$udaje['h1part2']">{$udaje['h1part2']|striptags}</small>
-        </h1>
-        {*<div><a n:href="Homepage:" title="{$udaje['titulka']}">
-          <img src="{$basePath}/www/images/logo_p.png" class="logo" alt="logo">
-          <img src="{$basePath}/www/images/obluklogo.png" class="logo" alt="logo">
-        </a></div>*}
-        <nav id="nav2">
+        </h1>*}
+        
+        {*<nav id="nav2">
         <!--[if lt IE 9]><div id="nav2"><![endif]-->
           {control menu templateType=>'fixed', cast=>2, article_avatar_view_in =>0}
         <!--[if lt IE 9]></div><![endif]-->
         </nav>
       </div>{* ----- KONIEC horna lista ------ *}
-      <div id="header2">
+      {*<div id="header2">
         <nav id="nav1">
         <!--[if lt IE 9]><div id="nav1"><![endif]-->
           {control menu templateType=>'fixed', cast=>1, article_avatar_view_in =>0}
@@ -71,11 +98,10 @@
     </header>{* ----- KONIEC header ------ *}
 
     {* ----- ZACIATOK content - centralna cast ----- *}
-    <section id="content" {*class="container"*}>
+    <section id="content">
     <!--[if lt IE 9]><div id="content"><![endif]-->
         <div class="row top-panel">
-          {control menu templateType=>'nav', level=>1}
-          {*control userLangMenu*}
+          {*control menu templateType=>'nav', level=>1*}
           {include 'flash_messages.latte'}
         </div>
         {include #content}
@@ -83,7 +109,6 @@
     </section>
     {* ----- Spodok stranky - FOOTER ----- *}
     {include 'footer_template.latte'}
-    {*/ifset*}
   </div>
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>

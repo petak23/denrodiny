@@ -27,7 +27,7 @@ class MenuPresenter extends \App\AdminModule\Presenters\ArticlePresenter {
    * @param int $uroven - uroven menu
    */
   public function actionAdd($id, $uroven) {
-		$this->menuformuloz = ["text"=>"Ulož","redirect"=>"Menu:default"];
+		$this->menuformuloz = ["text"=>"Ulož","redirect"=>"Menu:default", "edit"=>FALSE];
     parent::actionAdd($id, $uroven);
 	}
 	
