@@ -10,7 +10,7 @@
     {if $clanok->hlavne_menu->absolutna !== NULL}
       <h3>
         Táto časť odkazuje na absolútnu adresu:
-        <a href="{if strpos($clanok->hlavne_menu->absolutna, 'http') === FALSE}{link $clanok->hlavne_menu->absolutna}{else}{$clanok->hlavne_menu->absolutna}{/if}" title="odkaz">{$clanok->hlavne_menu->absolutna}</a>
+        <a href="{$clanok->hlavne_menu->absolutna}" title="odkaz">{$clanok->hlavne_menu->absolutna}</a>
       </h3>  
     {else}
       <h3>Táto časť ešte neobsahuje žiadnu položku!</h3>

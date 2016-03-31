@@ -48,7 +48,7 @@ parameters:
     datum_zadania: TRUE      #Zobrazenie datumu zadania
     datum_platnosti: TRUE    #Zobrazenie datumu platnosti
   clanky:
-    zobraz_anotaciu: FALSE   #Zobrazenie anotacie vseobecne
+    zobraz_anotaciu: TRUE   #Zobrazenie anotacie vseobecne
     opravnenia:
       0: Žiadne
       1: Pridávanie podčlánkov

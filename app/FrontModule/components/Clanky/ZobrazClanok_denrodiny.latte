@@ -1,0 +1,34 @@
+<div class="templatemo-service" id="{substr($clanok->hlavne_menu->absolutna, 1)}">
+	<div class="container">
+		<div class="row">
+			<div class="templatemo-line-header">
+				<div class="text-center">
+					<hr class="team_hr team_hr_left hr_gray" />
+					<span>{$clanok->nazov}</span>
+					<hr class="team_hr team_hr_right hr_gray" />
+				</div>
+			</div>
+		</div>
+    {ifset $clanok->clanok_lang->text}
+      {$clanok->clanok_lang->text|noescape|obr_v_txt|koncova_znacka}
+    {/ifset}
+	</div>
+</div>
+    
+{*<div n:snippet="ukazClanokMoj" class="zobraz-clanok">
+  <h3 n:if="!(isset($nastav['view_h2']) && !$nastav['view_h2'])">{$clanok->nazov} <small n:if="strlen($clanok->h1part2)">{$clanok->h1part2}</small></h3>
+  <div n:ifset="$error" class="st_upozorni">{$error}</div>
+  {if ($article_avatar_view_in & 2) && isset($clanok->hlavne_menu->avatar) && is_file('www/'.$avatar_path.$clanok->hlavne_menu->avatar)}
+    <div class="avatar-img"><img src="{$basePath}/www/{$avatar_path}{$clanok->hlavne_menu->avatar}" alt="{$texty['text_title_image']}"></div>
+  {/if} 
+  <div class="datum">
+    <span n:if="$clanok_hlavicka & 1">{$clanok->hlavne_menu->modified|date:'j.n.Y'}</span>
+    <span n:ifset="$clanok->hlavne_menu->datum_platnosti">
+     {$texty["platnost_do"]}{$clanok->hlavne_menu->datum_platnosti|date:'j.n.Y'}
+    </span>
+    <span n:if="$clanok_hlavicka & 2">{$texty["zadal"]}{$clanok->hlavne_menu->user_profiles->priezvisko}</span>
+  </div>
+  <div n:if="isset($clanok->clanok_lang->text)" class="text-clanku">
+    {$clanok->clanok_lang->text|noescape|obr_v_txt|koncova_znacka}
+  </div>
+</div>*}

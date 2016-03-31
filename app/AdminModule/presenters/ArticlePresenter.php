@@ -488,7 +488,7 @@ abstract class ArticlePresenter extends \App\AdminModule\Presenters\BasePresente
     $komponenta = $this->nastavenie["komponenty"][$komponenta_spec_nazov];
     $out = [
         'id_hlavne_menu'  => $form->getHttpData($form::DATA_TEXT, 'id_hlavne_menu_clanku'),
-        'id_komponenty'   => $komponenta['id'],
+//        'id_komponenty'   => $komponenta['id'],
         'spec_nazov'      => $komponenta_spec_nazov,
         'parametre'       => "",
     ];

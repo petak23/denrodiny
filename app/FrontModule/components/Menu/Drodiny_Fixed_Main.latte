@@ -1,5 +1,3 @@
-{*<div class="navbar-collapse collapse" id="templatemo-nav-bar">*}
-  <ul class="nav navbar-nav navbar-right" style="margin-top: 40px;" n:inner-foreach="$startNode->nodes as $node">
-    <li n:class="$iterator->first ? active"><a href="{$node->link}" class="{if $iterator->first}btn-back-to-top{else}nav{/if}" title="{$node->name}">{$node->name}</a></li>
-  </ul>
-{*</div>*}                
+<ul class="nav navbar-nav navbar-right" style="margin-top: 40px;" n:inner-foreach="$startNode->nodes as $node">
+  <li n:class="$iterator->first ? active"><a href="{$node->link}" class="{if $iterator->first}btn-back-to-top{else}nav{/if}" title="{$node->name}">{$node->name}</a></li>
+</ul>              
