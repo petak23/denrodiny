@@ -1,7 +1,0 @@
-<ul n:if="isset($startNode) && count($startNode->nodes)" n:inner-foreach="$startNode->nodes as $sn">
-  {if isset($sn->nodes) && count($sn->nodes)}
-    <li n:foreach="$sn->nodes as $s">
-      <a href="{$s->link}" title="{$s->name}">{$s->name}</a>
-    </li>
-  {/if}
-</ul>

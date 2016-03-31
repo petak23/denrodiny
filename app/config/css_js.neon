@@ -11,7 +11,6 @@ parameters:
         font: 'http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
         font-awesome: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'
         bootstrap: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
-        bootstrap-theme: 'css/bootstrap-theme.css'
         colorbox: 'css/colorbox.css'
       js: 
         jquery: 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
@@ -26,7 +25,7 @@ parameters:
       css: ['css/front/templatemo_style.css']
       js: ['js/stickUp.min.js', 'js/templatemo_script.js']
     Admin:
-      css: ['css/admin/cupertino/jquery-ui-1.10.4.custom.css', 'css/admin/formulare.css', 'css/admin/grid.css', 'css/admin/lavy.css', 'css/admin/stred_admin.css', 'css/admin/main_admin.css']
+      css: ['css/bootstrap-theme.css', 'css/admin/cupertino/jquery-ui-1.10.4.custom.css', 'css/admin/formulare.css', 'css/admin/grid.css', 'css/admin/lavy.css', 'css/admin/stred_admin.css', 'css/admin/main_admin.css']
       js: ['js/jquery-ui.min.js','js/jquery.ui.datepicker-sk.js', 'js/grid.js', 'js/pomocne_admin.js']
       Oznam_add:
         css: []

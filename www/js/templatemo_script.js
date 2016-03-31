@@ -5,70 +5,60 @@ jQuery(function($) {
   });
 		
   $(document).ready( function() {
+    top_menu_height = $('.templatemo-top-menu').height();
+    // scroll spy to auto active the nav item
+    $('body').scrollspy({ target: '#templatemo-nav-bar', offset: top_menu_height + 10 });
+    $('.external-link').unbind('click');
 
-        // load google map
-//        var script = document.createElement('script');
-//        script.type = 'text/javascript';
-//        script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
-//            'callback=initialize';
-//        document.body.appendChild(script);
+    // scroll to top
+    $('.btn-back-to-top').click(function(e){
+        e.preventDefault();
+        $('html,body').animate({ scrollTop: 0 }, 'slow');
+        return false;
+    });
 
-        top_menu_height = $('.templatemo-top-menu').height();
-        
-        // scroll spy to auto active the nav item
-        $('body').scrollspy({ target: '#templatemo-nav-bar', offset: top_menu_height + 10 });
-		$('.external-link').unbind('click');
+    // scroll to specific id when click on menu
+    $('.templatemo-top-menu .navbar-nav a.nav').click(function(e){
+        e.preventDefault(); 
+        var linkId = $(this).attr('href');
+        scrollTo(linkId);
+        if($('.navbar-toggle').is(":visible") == true){
+            $('.navbar-collapse').collapse('toggle');
+        }
+        $(this).blur();
+        return false;
+    });
 
-        // scroll to top
-        $('.btn-back-to-top').click(function(e){
-            e.preventDefault();
-            $('html,body').animate({ scrollTop: 0 }, 'slow');
-            return false;
+    $('.templatemo-btn-read-more').click(function(e){
+        e.preventDefault();
+        var linkId = $(this).attr('href');
+        scrollTo(linkId);
+        return false;
+    });
+
+    // to stick navbar on top
+    $('.templatemo-top-menu ').stickUp();
+
+    // gallery category
+    $('.templatemo-gallery-category a').click(function(e){
+        e.preventDefault(); 
+        $(this).parent().children('a').removeClass('active');
+        $(this).addClass('active');
+        var linkClass = $(this).attr('href');
+        $('.gallery').each(function(){
+            if($(this).is(":visible") == true){
+               $(this).hide();
+            };
         });
+        $(linkClass).fadeIn();  
+    });
 
-        // scroll to specific id when click on menu
-        $('.templatemo-top-menu .navbar-nav a.nav').click(function(e){
-            e.preventDefault(); 
-            var linkId = $(this).attr('href');
-            scrollTo(linkId);
-            if($('.navbar-toggle').is(":visible") == true){
-                $('.navbar-collapse').collapse('toggle');
-            }
-            $(this).blur();
-            return false;
-        });
-        
-        $('.templatemo-btn-read-more').click(function(e){
-            e.preventDefault();
-            var linkId = $(this).attr('href');
-            scrollTo(linkId);
-            return false;
-        });
-
-        // to stick navbar on top
-        $('.templatemo-top-menu ').stickUp();
-
-        // gallery category
-        $('.templatemo-gallery-category a').click(function(e){
-            e.preventDefault(); 
-            $(this).parent().children('a').removeClass('active');
-            $(this).addClass('active');
-            var linkClass = $(this).attr('href');
-            $('.gallery').each(function(){
-                if($(this).is(":visible") == true){
-                   $(this).hide();
-                };
-            });
-            $(linkClass).fadeIn();  
-        });
-
-        //gallery light box setup
-        $('a.colorbox').colorbox({
-                                    rel: function(){
-                                        return $(this).data('group');
-
-                                    }
-        });
+    //gallery light box setup
+    $('a.colorbox').colorbox({
+      rel: function(){
+          return $(this).data('group');
+      }
+    });
   });
 });
 
@@ -82,12 +72,9 @@ function initialize() {
 }
 
 // scroll animation 
-function scrollTo(selectors)
-{
-
-    if(!$(selectors).size()) return;
-    var selector_top = $(selectors).offset().top - top_menu_height + 30 ;
-    console.log(selector_top);
-    $('html,body').animate({ scrollTop: selector_top }, 'slow');
-
+function scrollTo(selectors) {
+  if(!$(selectors).size()) return;
+  var selector_top = $(selectors).offset().top - top_menu_height + 30 ;
+  console.log(selector_top);
+  $('html,body').animate({ scrollTop: selector_top }, 'slow');
 }

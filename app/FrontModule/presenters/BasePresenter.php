@@ -10,7 +10,7 @@ use DbTable;
 /**
  * Zakladny presenter pre vsetky presentery vo FRONT module
  * 
- * Posledna zmena(last change): 16.03.2016
+ * Posledna zmena(last change): 31.03.2016
  *
  *	Modul: FRONT
  *
@@ -18,7 +18,7 @@ use DbTable;
  * @copyright Copyright (c) 2012 - 2016 Ing. Peter VOJTECH ml.
  * @license
  * @link      http://petak23.echo-msz.eu
- * @version 1.1.9c
+ * @version 1.2.0
  */
 
 abstract class BasePresenter extends \App\Presenters\CommonBasePresenter {
@@ -91,11 +91,13 @@ abstract class BasePresenter extends \App\Presenters\CommonBasePresenter {
         // Ak $rna == NULL - vytvori link ako odkaz do aplikacie
         // Ak $rna zacina "http" - pouzije sa absolutna adresa
         // Ak $rna obsahuje text "Clanky:default 2" - vytvorí sa odkaz do aplikácie na clanok s id 2 - moze byt aj bez casti ":2" odkazu ale musí byť aj default
+        // Ak $rna neobsahuje ":" tak sa použije tak ako je
         $rna = $row['node']->absolutna;
         if ($rna !== NULL) {
           $node->link = strpos($rna, 'http') !== FALSE ? $rna 
                                                        : (count($p = explode(" ", $rna)) == 2 ? $servise->link($p[0], ["id"=>$p[1]]) 
-                                                                                              : $servise->link($p[0]));
+                                                                                              : (count($p = explode(":", $rna)) == 2 ? $servise->link($p[0]) : $rna)
+                                                         );
         } else {
           $node->link = is_array($row['node']->link) ? $servise->link($row['node']->link[0], ["id"=>$row['node']->id]) 
                                                      : $servise->link($row['node']->link);

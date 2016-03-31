@@ -1,4 +1,0 @@
-{var $teraz = new \DateTime(date('Y-m-d'))}
-<ul class="nav-top" n:if="isset($startNode) && count($startNode->nodes)" n:inner-foreach="$startNode->nodes as $node">
-  <li><a href="{$node->link}" title="{$node->name}">{$node->name}<span class="label label-success" n:if="isset($node->novinka) && $node->novinka > $teraz">nové</span></a></li>
-</ul>
