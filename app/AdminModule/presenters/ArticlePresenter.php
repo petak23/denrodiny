@@ -10,7 +10,7 @@ use DbTable;
 /**
  * Zakladny presenter pre presentery obsluhujuce polozky hlavneho menu v module ADMIN
  * 
- * Posledna zmena(last change): 04.03.2016
+ * Posledna zmena(last change): 01.04.2016
  *
  * Modul: ADMIN
  *
@@ -18,7 +18,7 @@ use DbTable;
  * @copyright  Copyright (c) 2012 - 2016 Ing. Peter VOJTECH ml.
  * @license
  * @link       http://petak23.echo-msz.eu
- * @version 1.1.9
+ * @version 1.1.9a
  */
 
 Container::extensionMethod('addDatePicker', function (Container $container, $name, $label = NULL) {
@@ -488,7 +488,6 @@ abstract class ArticlePresenter extends \App\AdminModule\Presenters\BasePresente
     $komponenta = $this->nastavenie["komponenty"][$komponenta_spec_nazov];
     $out = [
         'id_hlavne_menu'  => $form->getHttpData($form::DATA_TEXT, 'id_hlavne_menu_clanku'),
-//        'id_komponenty'   => $komponenta['id'],
         'spec_nazov'      => $komponenta_spec_nazov,
         'parametre'       => "",
     ];

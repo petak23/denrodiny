@@ -52,6 +52,37 @@ class HomepagePresenter extends \App\FrontModule\Presenters\BasePresenter {
     }
   }
   
+  public function renderDefault() {
+    $this->template->fotogalery = [
+      "01" => ["prosby", "OMŠA"],
+      "02" => ["kapela", "OMŠA"],
+      "03" => ["stánky", "PONUKA"],
+      "04" => ["rodiny", "PROGRAM"],
+      "05" => ["erko", "DIVADLO"],
+      "06" => ["deti", "DIVÁCI"],
+      "07" => ["sestry", "PROGRAM"],
+      "08" => ["posedenie", "AREÁL"],
+      "09" => ["ukážka", "POŽIARNICI"],
+      "10" => ["muži", "RODINA"],
+      "11" => ["spolu", "PROGRAM"],
+      "12" => ["ženy", "RODINA"],
+      "13" => ["zábava", "PROGRAM"],
+      "14" => ["tombola", "PROGRAM"],
+      "15" => ["cukor a soľ", "PROGRAM"],
+      "16" => ["spoločenstvo", "DIVÁCI"],
+      "17" => ["mestečko", "SKAUTI"],
+      "18" => ["informácie", "SKAUTI"],
+      "19" => ["mestečko", "SKAUTI"],
+      "20" => ["deti", "RODINA"],
+      "21" => ["podsada", "SKAUTI"],
+      "22" => ["dielne", "PROGRAM"],
+      "23" => ["spoločenstvo", "DIVÁCI"],
+      "24" => ["posedenie", "DIVÁCI"],
+      "25" => ["požiarnici", "ATRAKCIA"],
+      "26" => ["miesto", "DEŇ RODINY"],
+    ];
+  }
+  
   /** Akcia pri presmerovani z nedovoleneho pristupu */
   public function actionNotAllowed() {
     $this->setView("Default");
