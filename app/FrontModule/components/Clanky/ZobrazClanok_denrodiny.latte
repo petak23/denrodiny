@@ -9,8 +9,10 @@
 				</div>
 			</div>
 		</div>
-    {ifset $clanok->clanok_lang->text}
+    {if $clanok->clanok_lang->text}
+      <span class="toto-tu-je-clanok">
       {$clanok->clanok_lang->text|noescape|obr_v_txt|koncova_znacka}
-    {/ifset}
+      </span>
+    {/if}
 	</div>
 </div>
